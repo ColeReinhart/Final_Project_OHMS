@@ -1,0 +1,62 @@
+html {
+    margin-left: 15%;
+    margin-right: 15%;
+    background: #9fa0a0;
+}
+
+body {
+    background: #fcfcdb;
+}
+
+h1, h2 {
+    font-size: 60px;
+    color: #fcfcdb;
+    text-align: center;
+    margin-top: 15px;
+    background: #9fa0a0;
+}
+
+#login, #register {
+    color: #1e1e1e;
+    background: #189ff4;
+    font-size: 50px;
+    border: none;
+    border-radius: 10%;
+    display: block;
+    margin: 15px;
+}
+
+  
+.form-popup {
+    display: none;
+}
+
+.form-container {
+    max-width: 500px;
+    margin-left: 30%;
+    background-color: #9fa0a0;
+    color: #fcfcdb;
+}
+
+.form-container input[type=text], .form-container input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+}
+
+.form-container .btn {
+    background-color: green;
+    padding: 16px 20px;
+    border: none;
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: 30px;
+    color: #fcfcdb;
+}
+
+
+.form-container .cancel {
+    background-color: red;
+}
