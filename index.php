@@ -1,15 +1,7 @@
 <?php
-$dbServername = "localhost";
-$dbUsername = "root";
-$dbPassword = "";
-$dbName = "Final_OHMS";
+include_once 'db.php';
 
-$conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-echo "Connected successfully";
+session_start();
 
 if(isset($_GET['login'])) {
   $search = "SELECT Employee.Email, Employee.Password, Employee.Role, Patient.Email, Patient.Password  FROM Employee, Patient;";
@@ -17,20 +9,26 @@ if(isset($_GET['login'])) {
   while($row = mysqli_fetch_row($result)) {
     if ($row[0] == $_GET['email'] ?? '') {
       if ($row[1] == $_GET['psw'] ?? ''){
-        switch ($row[2]) {
+        $_SESSION['role'] = $row[2];
+        switch ($_SESSION['role']) {
           case 'doctor':
+            $_SESSION['loggedIn'] == true;
             header( 'Location: doc_home.php');
             break;
           case 'caregiver':
+            $_SESSION['loggedIn'] == true;
             header( 'Location: caregiver.php');
             break;
-          case 'family_member':
+          case 'family':
+            $_SESSION['loggedIn'] == true;
             header( 'Location: fam_member.php');
             break; 
           case 'admin':
+            $_SESSION['loggedIn'] == true;
             header( 'Location: admin.php');
             break;
           case 'supervisor':
+            $_SESSION['loggedIn'] == true;
             header( 'Location: supervisor.php');
             break;
           }
