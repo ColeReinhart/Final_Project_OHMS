@@ -3,7 +3,7 @@ include_once 'db.php';
 
 session_start();
 
-if(($_SESSION['loggedIn'] == true) && $_SESSION['role'] == "family") {
+if(($_SESSION['loggedIn'] == true) && ($_SESSION['role'] == "family")|| $_SESSION['role'] == "admin") {
     echo $_SESSION['role'];
 } else {
     header("location: index.php");

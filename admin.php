@@ -1,4 +1,14 @@
 <?php
+include_once 'db.php';
+
+session_start();
+
+if(($_SESSION['loggedIn'] == true) && $_SESSION['role'] == "admin") {
+    echo $_SESSION['role'];
+} else {
+    header("location: index.php");
+}
+
 if(isset($_GET['logout'])) {
     unset($_SESSION['logout']);
     $_SESSION['role'] = NULL;
