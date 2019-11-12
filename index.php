@@ -4,7 +4,7 @@ include_once 'db.php';
 session_start();
 
 if(isset($_GET['login'])) {
-  $search = "SELECT Employee.Email, Employee.Password, Employee.Role, Patient.Email, Patient.Password  FROM Employee, Patient;";
+  $search = "SELECT Employee.Email, Employee.Password, Employee.Role, Patient.Email, Patient.Password, Patient.Role FROM Employee, Patient;";
   $result = mysqli_query($conn, $search);
   while($row = mysqli_fetch_row($result)) {
     if ($row[0] == $_GET['email'] ?? '') {
@@ -12,7 +12,7 @@ if(isset($_GET['login'])) {
         $_SESSION['role'] = $row[2];
         switch ($_SESSION['role']) {
           case 'doctor':
-            $_SESSION['loggedIn'] == true;
+            $_SESSION['loggedIn'] = true;
             header( 'Location: doc_home.php');
             break;
           case 'caregiver':
@@ -36,15 +36,13 @@ if(isset($_GET['login'])) {
       }
       if ($row[3] == $_GET['email'] ?? '') {
         if ($row[4] == $_GET['psw'] ?? ''){
-            header( 'Location: patient.php');
+          $_SESSION['loggedIn'] == true;
+          $_SESSION['role'] = $row[5];
+          header( 'Location: patient.php');
         }
       }
     }
   }
-
-    
-  
-
 ?>
 
 <html>
@@ -68,6 +66,12 @@ if(isset($_GET['login'])) {
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
 </div>
+
+<?php
+  if(isset($_GET['login'])) {
+    echo "<p id = 'error'>Incorrect Username or Password</p>";
+  }
+?>
 
 <script>
 

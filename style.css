@@ -33,7 +33,7 @@ h1, h2 {
 
 .form-container {
     max-width: 500px;
-    margin-left: 30%;
+    margin-left: 15%;
     background-color: #9fa0a0;
     color: #fcfcdb;
 }
@@ -60,3 +60,9 @@ h1, h2 {
 .form-container .cancel {
     background-color: red;
 }
+
+/* #error {
+    color: red;
+    font-size: 50px;
+    text-align: center;
+} */
