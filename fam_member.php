@@ -4,7 +4,7 @@ include_once 'db.php';
 session_start();
 
 if(($_SESSION['loggedIn'] = true) && ($_SESSION['role'] == "family")|| $_SESSION['role'] == "admin") {
-    echo $_SESSION['role'];
+    // echo $_SESSION['role'];
 } else {
     header("location: index.php");
 }
@@ -16,8 +16,11 @@ if(isset($_GET['logout'])) {
 }
 ?>
 <html>
-    Family Member Home
-    <form action="">
-        <button type="submit" class="btn" name = "logout">Logout</button>
-    </form>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <body>
+        <h1>Family Member Home</h1>
+        <form action="">
+            <button type="submit" class="btn" name = "logout">Logout</button>
+        </form>
+    </body>  
 </html>
