@@ -17,6 +17,7 @@ h1, h2 {
 }
 
 #login, #register {
+    font: sans-serif;
     color: #1e1e1e;
     background: #189ff4;
     font-size: 50px;
@@ -24,6 +25,8 @@ h1, h2 {
     border-radius: 10%;
     display: block;
     margin: 15px;
+    width: 190px;
+    text-decoration: None;
 }
 
   
@@ -59,4 +62,26 @@ h1, h2 {
 
 .form-container .cancel {
     background-color: red;
+}
+
+.input_space{
+    margin-bottom: 100px;
+}
+
+.float_right{
+float: right;
+}
+
+.float_left{
+    float: left;
+}
+
+#button{
+    position: relative;
+    top: 400px;
+    float: right;
+}
+
+#patient{
+top: 400px;
 }
