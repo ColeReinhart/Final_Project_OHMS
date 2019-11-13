@@ -19,10 +19,10 @@ if(isset($_GET['logout'])) {
 <html>
     <link href="style.css" rel="stylesheet" type="text/css">
     <body>
-        <h1>Caregiver Home</h1>
-        <form action="">
+        <form action="" class = "logout">
             <button type="submit" class="btn" name = "logout">Logout</button>
         </form>
+        <h1>Caregiver Home</h1>
 
         <label>List of Patient Duties:</label>
         <?php echo 'All the Duties Go Here'?> 

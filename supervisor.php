@@ -18,10 +18,10 @@ if(isset($_GET['logout'])) {
 <html>
     <link href="style.css" rel="stylesheet" type="text/css">
     <body>
-        <h1>Superviser Home</h1>
-        <form action="">
+        <form action="" class = "logout">
             <button type="submit" class="btn" name = "logout">Logout</button>
         </form>
+        <h1>Superviser Home</h1>
 
         <label>Date:</label>
         <input type="text">

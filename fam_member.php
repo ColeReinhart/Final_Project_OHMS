@@ -18,10 +18,10 @@ if(isset($_GET['logout'])) {
 <html>
     <link href="style.css" rel="stylesheet" type="text/css">
     <body>
-        <h1>Family Member Home</h1>
-        <form action="">
+        <form action="" class = "logout">
             <button type="submit" class="btn" name = "logout">Logout</button>
         </form>
+        <h1>Family Member Home</h1>
 
         <label>Family Code (For Patient Family Member):</label>
         <?php echo 'FC Goes Here'?>

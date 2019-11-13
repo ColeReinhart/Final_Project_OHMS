@@ -19,10 +19,10 @@ if(isset($_GET['logout'])) {
 <html>
     <link href="style.css" rel="stylesheet" type="text/css">
     <body>
-        <h1>Patient Home</h1>
-        <form action="">
+        <form action="" class = "logout">
             <button type="submit" class="btn" name = "logout">Logout</button>
         </form>
+        <h1>Patient Home</h1>
 
         <label>Patient ID:</label>
         <?php echo 'PID Goes Here'?>
