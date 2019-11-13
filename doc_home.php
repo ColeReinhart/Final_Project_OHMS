@@ -23,5 +23,28 @@ if(isset($_GET['logout'])) {
         <form action="">
             <button type="submit" class="btn" name = "logout">Logout</button>
         </form>
+
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Comment</th>
+                <th>Morning Medicine</th>
+                <th>Afternoon Medicine</th>
+                <th>Night Medicine</th>
+            </tr>
+        </table>
+
+        <label>Date:</label>
+        <input type="text">
+        <br>
+
+        <table>
+            <tr>
+                <th>Patient</th>
+                <th>Date</th>
+            </tr>
+        </table>
+
     </body>  
 </html>

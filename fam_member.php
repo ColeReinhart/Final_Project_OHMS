@@ -22,5 +22,45 @@ if(isset($_GET['logout'])) {
         <form action="">
             <button type="submit" class="btn" name = "logout">Logout</button>
         </form>
+
+        <label>Family Code (For Patient Family Member):</label>
+        <?php echo 'FC Goes Here'?>
+        <br>
+
+        <label>Patient ID (For Patient Family Member):</label>
+        <?php echo 'PID Goes Here'?>
+        <br>
+
+        <label>Date:</label>
+        <?php echo 'Date Goes Here'?>
+        <br>
+
+        <button>OKAY</button>
+        <button>CANCEL</button>
+
+        <table>
+            <tr>
+                <th>Doctors' Name</th>
+                <th>Doctors' Appointment</th>
+                <th>Caregivers' Name</th>
+                <th>Morning Medicine</th>
+                <th>Afternoon Medicine</th>
+                <th>Night Medicine</th>
+                <th>Breakfast</th>
+                <th>Lunch</th>
+                <th>Dinner</th>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="checkbox"></td>
+                <td>Name</td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+            </tr>
+        </table>
     </body>  
 </html>
