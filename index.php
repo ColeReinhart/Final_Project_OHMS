@@ -11,23 +11,23 @@ if(isset($_GET['login'])) {
       if ($row[1] == $_GET['psw'] ?? ''){
         $_SESSION['role'] = $row[2];
         switch ($_SESSION['role']) {
-          case 'doctor':
+          case 'Doctor':
             $_SESSION['loggedIn'] = true;
             header( 'Location: doc_home.php');
             break;
-          case 'caregiver':
+          case 'Caregiver':
             $_SESSION['loggedIn'] == true;
             header( 'Location: caregiver.php');
             break;
-          case 'family':
+          case 'Family_Member':
             $_SESSION['loggedIn'] == true;
             header( 'Location: fam_member.php');
             break; 
-          case 'admin':
+          case 'Admin':
             $_SESSION['loggedIn'] == true;
             header( 'Location: admin.php');
             break;
-          case 'supervisor':
+          case 'Supervisor':
             $_SESSION['loggedIn'] == true;
             header( 'Location: supervisor.php');
             break;
