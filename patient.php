@@ -3,7 +3,7 @@ include_once 'db.php';
 
 session_start();
 
-if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == "Patient" || $_SESSION['role'] == "admin") {
+if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == "Patient" || $_SESSION['role'] == "Admin") {
     echo $_SESSION['role'];
 } else {
     header("location: index.php");
@@ -17,8 +17,48 @@ if(isset($_GET['logout'])) {
 ?>
 
 <html>
-    Patient Home
-    <form action="">
-    <button type="submit" class="btn" name = "logout">Logout</button>
-    </form>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <body>
+        <form action="" class = "logout">
+            <button type="submit" class="btn" name = "logout">Logout</button>
+        </form>
+        <h1>Patient Home</h1>
+
+        <label>Patient ID:</label>
+        <?php echo 'PID Goes Here'?>
+        <br>
+
+        <label>Patient Name:</label>
+        <?php echo 'PN Goes Here'?>
+        <br>
+
+        <label>Date:</label>
+        <input type="text">
+        <br>
+
+        <table>
+            <tr>
+                <th>Doctors' Name</th>
+                <th>Doctors' Appointment</th>
+                <th>Caregivers' Name</th>
+                <th>Morning Medicine</th>
+                <th>Afternoon Medicine</th>
+                <th>Night Medicine</th>
+                <th>Breakfast</th>
+                <th>Lunch</th>
+                <th>Dinner</th>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="checkbox"></td>
+                <td>Name</td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+            </tr>
+        </table>
+    </body>  
 </html>
