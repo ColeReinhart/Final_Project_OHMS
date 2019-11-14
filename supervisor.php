@@ -23,6 +23,11 @@ if(isset($_GET['logout'])) {
         </form>
         <h1>Superviser Home</h1>
 
+        <ul>
+            <li><a class = 'on' href="supervisor.php">Home</a></li>
+            <li><a href="new_roster.php">New Roster</a></li>
+        </ul>
+
         <label>Date:</label>
         <input type="text">
         <br>
