@@ -50,7 +50,7 @@ if(isset($_GET['login'])) {
     <h1>Welcome to Old Farts and Darts</h1>
 
     <button class="open-button" onclick="openForm()" name="login" id="login" value="Login">Login</button>
-    <input type="submit" name="register" id="register" value="Register">
+    <a href="register.php" id="register" value="Register">Register </a>  
 
 <div class="form-popup" id="myForm">
   <form action="" class="form-container">
