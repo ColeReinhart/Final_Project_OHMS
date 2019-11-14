@@ -1,3 +1,50 @@
+<?php
+include_once 'db.php';
+
+session_start();
+
+if(isset($_GET['login'])) {
+  $search = "SELECT Employee.Email, Employee.Password, Employee.Role, Patient.Email, Patient.Password, Patient.Role FROM Employee, Patient;";
+  $result = mysqli_query($conn, $search);
+  while($row = mysqli_fetch_row($result)) {
+    if ($row[0] == $_GET['email'] ?? '') {
+      if ($row[1] == $_GET['psw'] ?? ''){
+        $_SESSION['role'] = $row[2];
+        switch ($_SESSION['role']) {
+          case 'doctor':
+            $_SESSION['loggedIn'] = true;
+            header( 'Location: doc_home.php');
+            break;
+          case 'caregiver':
+            $_SESSION['loggedIn'] == true;
+            header( 'Location: caregiver.php');
+            break;
+          case 'family':
+            $_SESSION['loggedIn'] == true;
+            header( 'Location: fam_member.php');
+            break; 
+          case 'admin':
+            $_SESSION['loggedIn'] == true;
+            header( 'Location: admin.php');
+            break;
+          case 'supervisor':
+            $_SESSION['loggedIn'] == true;
+            header( 'Location: supervisor.php');
+            break;
+          }
+        }
+      }
+      if ($row[3] == $_GET['email'] ?? '') {
+        if ($row[4] == $_GET['psw'] ?? ''){
+          $_SESSION['loggedIn'] == true;
+          $_SESSION['role'] = $row[5];
+          header( 'Location: patient.php');
+        }
+      }
+    }
+  }
+?>
+
 <html>
     <link href="style.css" rel="stylesheet" type="text/css">
     <h1>Welcome to Old Farts and Darts</h1>
@@ -6,7 +53,7 @@
     <a href="register.php" id="register" value="Register">Register </a>  
 
 <div class="form-popup" id="myForm">
-  <form action="/action_page.php" class="form-container">
+  <form action="" class="form-container">
     <h2>Login</h2>
 
     <label for="email"><b>Email</b></label>
@@ -15,10 +62,16 @@
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
 
-    <button type="submit" class="btn">Login</button>
+    <button type="submit" class="btn" name = "login">Login</button>
     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
 </div>
+
+<?php
+  if(isset($_GET['login'])) {
+    echo "<p id = 'error'>Incorrect Username or Password</p>";
+  }
+?>
 
 <script>
 
