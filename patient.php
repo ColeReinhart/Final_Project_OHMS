@@ -3,8 +3,8 @@ include_once 'db.php';
 
 session_start();
 
-if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == "patient" || $_SESSION['role'] == "admin") {
-    // echo $_SESSION['role'];
+if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == "Patient" || $_SESSION['role'] == "Admin") {
+    echo $_SESSION['role'];
 } else {
     header("location: index.php");
 }
