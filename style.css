@@ -1,6 +1,6 @@
 html {
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 5%;
+    margin-right: 5%;
     background: #9fa0a0;
 }
 
@@ -16,6 +16,7 @@ h1, h2 {
     background: #9fa0a0;
 }
 
+/* Login Button and Form */
 #login, #register {
     font: sans-serif;
     color: #1e1e1e;
@@ -65,6 +66,41 @@ h1, h2 {
 }
 
 
+/* Error Message when Logging in */
+#error {
+    color: red;
+    font-size: 50px;
+    text-align: center;
+}
+
+/* Logout Button */
+.logout .btn {
+    font-size: 35px;
+    color: #1e1e1e;
+    background: #189ff4;
+    border: none;
+    border-radius: 10%;
+    position: fixed;
+    opacity: 0.5;
+    transition-duration: 1s;
+}
+
+.logout .btn:hover {
+    color: white;
+    opacity: 1;
+}
+
+/* Table design */
+table {
+    border: 5px #9fa0a0 solid;
+    margin: 15px;
+    text-align: center;
+}
+
+td, th {
+    border: 1px #9fa0a0 solid;
+}
+
 .input_space{
     margin-bottom: 100px;
 }
@@ -86,9 +122,3 @@ float: right;
 #patient{
 top: 400px;
 }
-
- #error {
-    color: red;
-    font-size: 50px;
-    text-align: center;
-} 
