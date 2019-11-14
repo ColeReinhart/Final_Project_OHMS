@@ -5,7 +5,7 @@ include_once 'db.php';
 session_start();
 
 if(($_SESSION['loggedIn'] = true) && ($_SESSION['role'] == "Caregiver") || $_SESSION['role'] == "Admin") {
-    // echo $_SESSION['role'];
+
 } else {
     header("location: index.php");
 }
@@ -23,6 +23,11 @@ if(isset($_GET['logout'])) {
             <button type="submit" class="btn" name = "logout">Logout</button>
         </form>
         <h1>Caregiver Home</h1>
+
+        <ul>
+            <li><a class = 'on' href="caregiver.php">Home</a></li>
+            <li><a href="roster.php">Roster</a></li>
+        </ul>
 
         <label>List of Patient Duties:</label>
         <?php echo 'All the Duties Go Here'?> 

@@ -72,5 +72,8 @@ if(isset($_GET['logout'])) {
         <?php echo 'Group 4'?>
         <br>
 
+        <button>OKAY</button>
+        <button>CANCEL</button>
+
     </body>  
 </html>
