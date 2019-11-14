@@ -101,24 +101,55 @@ td, th {
     border: 1px #9fa0a0 solid;
 }
 
-.input_space{
+/* Register Page */
+.input_space {
     margin-bottom: 100px;
 }
 
-.float_right{
-float: right;
+.float_right {
+    float: right;
 }
 
-.float_left{
+.float_left {
     float: left;
 }
 
-#button{
+#button {
     position: relative;
     top: 400px;
     float: right;
 }
 
-#patient{
-top: 400px;
+#patient {
+    top: 400px;
 }
+
+/* Nav Bar */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #9fa0a0;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 15px;
+  }
+  
+  li a:hover:not(.on) {
+    background-color: #189ff4;
+    transition-duration: 1s;
+  }
+  
+  .on {
+    background-color: #189ff4;
+    color: white;
+  }

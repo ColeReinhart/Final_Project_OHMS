@@ -21,17 +21,16 @@ if(isset($_GET['logout'])) {
         <form action="" class = "logout">
             <button type="submit" class="btn" name = "logout">Logout</button>
         </form>
-        <h1>Doctor Home</h1>
+        <h1>Patients' of Doctor</h1>
 
         <ul>
-            <li><a class = 'on' href="doc_home.php">Home</a></li>
+            <li><a href="doc_home.php">Home</a></li>
             <li><a href="doc_appoint.php">Doctors' Appointments</a></li>
-            <li><a href="pat_doc.php">Patients' of the Doctor</a></li>
+            <li><a class = 'on' href="pat_doc.php">Patients' of the Doctor</a></li>
         </ul>
-        
+
         <table>
             <tr>
-                <th>Name</th>
                 <th>Date</th>
                 <th>Comment</th>
                 <th>Morning Medicine</th>
@@ -40,16 +39,16 @@ if(isset($_GET['logout'])) {
             </tr>
         </table>
 
-        <label>Date:</label>
-        <input type="text">
-        <br>
+        <button>New Perscription</button>
 
         <table>
             <tr>
-                <th>Patient</th>
-                <th>Date</th>
+                <th>Comment</th>
+                <th>Morning Medicine</th>
+                <th>Afternoon Medicine</th>
+                <th>Night Medicine</th>
             </tr>
         </table>
-
-    </body>  
+    </body>
 </html>
+
