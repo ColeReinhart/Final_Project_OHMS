@@ -14,8 +14,34 @@ if(isset($_GET['logout'])) {
     unset($_SESSION['logout']);
     $_SESSION['role'] = NULL;
     header("location: index.php");
+
+}
+
+if(isset($_GET['pat_id'])){
+    
+    $pat = $_GET['pat'];
+    $sql = "SELECT * FROM `Patient` WHERE `Pat_ID` = '$pat'";
+    $result = mysqli_query($conn,$sql);
+    if ($result) {
+        while($row=mysqli_fetch_row($result)){
+        $var = ($row[1]. " " . $row[2]);
+    }
+}
+}
+$add = $_GET['add'] ?? NULL;
+if(isset($add)){
+
+    $pat = $_GET['pat'] ?? '';
+    $date = $_GET['date'] ?? '';
+    $group = $_GET['group'] ?? '';
+    $sql = "UPDATE Patient SET `Group` = '$group', Admission_Date = '$date' WHERE `Pat_ID` = '$pat'";
+    mysqli_query($conn,$sql);
+    // header("Location:admin.php");
+
 }
 ?>
+
+
 <html>
 <link href="style.css" rel="stylesheet" type="text/css">
     <body>
@@ -23,43 +49,36 @@ if(isset($_GET['logout'])) {
             <button type="submit" class="btn" name = "logout">Logout</button>
         </form>
         <h1>Admin Home</h1>
-
+        <h3>Additional Information</h3>
         <ul>
-            <li><a class="active" href="">Additional Information</a></li>
             <li><a href="">Roles</a></li>
              <li><a href="">Employee</a></li>
             <li><a href="">Patients</a></li>
         </ul>
+        <form action="admin.php">
+        <label>Patient ID</label>
+        <input name="pat"type="number" value="<?php if(isset($pat)){echo $pat; } ?>">
+        <input type="submit" name="pat_id" >
+        </form>    
+            <br>
+        <form Method="GET" action="admin.php">
+        <input name="pat"type="hidden" value="<?php if(isset($pat)){echo $pat; } ?>">
+        <label>Group</label>
+        <select name="select" name="group" class="input_space">
+            <option> Choose Group </option>
+            <option value="A"> A </option>
+            <option value="B"> B </option>
+            <option value="C"> C </option>
+            <option value="D"> D </option>
 
-        <label>Date:</label>
-        <input type="text">
-        <br>
-        
-        <table>
-            <tr>
-                <th>Supervisor</th>
-                <th>Doctor</th>
-                <th>Caregiver1</th>
-                <th>Caregiver2</th>
-                <th>Caregiver3</th>
-                <th>Caregiver4</th>
-            </tr>
-            <tr>
-                <td>Name</td>
-                <td>Name</td>
-                <td>Name</td>
-                <td>Name</td>
-                <td>Name</td>
-                <td>Name</td>
-            </tr>
-            <tr>
-                <td>Group Name</td>
-                <td>Group Name</td>
-                <td>Group Name</td>
-                <td>Group Name</td>
-                <td>Group Name</td>
-                <td>Group Name</td>
-            </tr>
-        </table>
+        </select>  
+    <br>
+        <label>Admission Date</label>
+        <input type="text" name="date" value="<?php echo(date("Y-m-d",time()));?>" readonly>  
+    <br>
+    <label>Patient name</label>
+        <input type="text" name="name" value="<?php if(isset($var)){echo $var; }?>" readonly> 
+        <input type="submit" name="add" >
+        </form>
     </body>
 </html>
