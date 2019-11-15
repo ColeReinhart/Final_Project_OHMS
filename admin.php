@@ -24,17 +24,21 @@ if(isset($_GET['logout'])) {
         <h1>Admin Home</h1>
 
         <ul>
-            <li><a class="active" href="">Additional Information</a></li>
-            <li><a href="">Roles</a></li>
-             <li><a href="">Employee</a></li>
-            <li><a href="">Patients</a></li>
+            <li><a class="on" href="">Home 5</a></li>
+            <li><a href="">Roles 7</a></li>
+            <li><a href="">Employee 9</a></li>
+            <li><a href="">Patients 10</a></li>
+            <li><a href="">Registration Approval 11</a></li>
+            <li><a href="">Roster 12</a></li>
+            <li><a href="">Admin's Report 18</a></li>
+            <li><a href="">Payment 19</a></li>
         </ul>
 
         <label>Date:</label>
         <input type="text">
         <br>
         
-        <table>
+        <!-- <table>
             <tr>
                 <th>Supervisor</th>
                 <th>Doctor</th>
@@ -59,6 +63,16 @@ if(isset($_GET['logout'])) {
                 <td>Group Name</td>
                 <td>Group Name</td>
             </tr>
-        </table>
+        </table> -->
+        <footer>
+            <ul>
+                <li>Phone: 717-555-5555</li>
+                <br>
+                <li>Email: oldfartsanddarts@fakemail.com</li>
+                <br>
+                <li>Fax: 171-123-4567</li>
+                <br>
+            </ul>
+        </footer>
     </body>
 </html>

@@ -153,3 +153,11 @@ ul {
     background-color: #189ff4;
     color: white;
   }
+
+  footer ul {
+    font-size: 30px;
+    color: #fcfcdb;
+    position: absolute;
+    bottom: 0;
+    width: 90%;
+  }

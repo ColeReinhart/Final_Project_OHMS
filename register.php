@@ -106,5 +106,16 @@ elseif($role == "Family_Member" & $fname != "" & $lname != "" & $email != "" & $
         <input id="button" type="submit" name="submit" value="Enter">
 
     </form>
+
+    <footer>
+            <ul>
+                <li>Phone: 717-555-5555</li>
+                <br>
+                <li>Email: oldfartsanddarts@fakemail.com</li>
+                <br>
+                <li>Fax: 171-123-4567</li>
+                <br>
+            </ul>
+        </footer>
 </body>
 </html>
