@@ -94,7 +94,8 @@ h1, h2 {
 table {
     border: 5px #9fa0a0 solid;
     margin: 15px;
-    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 td, th {

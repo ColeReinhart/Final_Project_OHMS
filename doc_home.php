@@ -3,6 +3,9 @@ include_once 'db.php';
 
 session_start();
 
+$colones = $_POST['col'] ?? '';
+$coltwos = $_POST['val'] ?? '';
+
 if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == 'Doctor') {
 } else {
     header("location: index.php");
@@ -31,18 +34,65 @@ if(isset($_GET['logout'])) {
         
         <table>
             <tr>
-                <th>Name</th>
+                <th>Fname</th>
+                <th>Lname</th>
                 <th>Date</th>
                 <th>Comment</th>
-                <th>Morning Medicine</th>
-                <th>Afternoon Medicine</th>
-                <th>Night Medicine</th>
+                <th>Morning_Med</th>
+                <th>Afternoon_Med</th>
+                <th>Night_Med</th>
+            </tr>
+            <tr>
+                <?php
+                $med = "SELECT Patient.Fname, Patient.Lname, Medicine.Date, Medicine.Comment, Medicine.Morning_Med, Medicine.Afternoon_Med, Medicine.Night_Med FROM Medicine, Patient WHERE Medicine.Pat_ID = Patient.Pat_ID;";
+                $result = mysqli_query($conn, $med);
+                if($result) {
+                    while($row = mysqli_fetch_row($result)) {
+                        echo "<th>$row[0]</th>";
+                        echo "<th>$row[1]</th>";
+                        echo "<th>$row[2]</th>";
+                        echo "<th>$row[3]</th>";
+                        echo "<th>$row[4]</th>";
+                        echo "<th>$row[5]</th>";
+                        echo "<th>$row[6]</th>";
+                        echo "</tr>";
+                    }
+                }
+            ?>
             </tr>
         </table>
+
+        <form method = "POST" action="doc_home.php">
+            <label for="col1">Column</label>
+            <input type="text" name = "col"> 
+            <label for="col1">Value</label>
+            <input type="text" name = "val"> 
+            <input type="submit" name="submits" value="Search">
+        </form>
 
         <label>Date:</label>
         <input type="text">
         <br>
+
+        <table>
+        <?php
+        if(isset($_POST['submits'])) {
+            $search = "SELECT Patient.Fname, Patient.Lname, Medicine.Date, Medicine.Comment, Medicine.Morning_Med, Medicine.Afternoon_Med, Medicine.Night_Med FROM Medicine, Patient WHERE `{$_POST['col']}` LIKE '{$_POST['val']}' AND Medicine.Pat_ID = Patient.Pat_ID;";
+            $result = mysqli_query($conn, $search);;
+            if($result) {
+                $row = mysqli_fetch_row($result);
+                echo "<th>$row[0]</th>";
+                echo "<th>$row[1]</th>";
+                echo "<th>$row[2]</th>";
+                echo "<th>$row[3]</th>";
+                echo "<th>$row[4]</th>";
+                echo "<th>$row[5]</th>";
+                echo "<th>$row[6]</th>";
+                echo "</tr>";
+            }
+        }
+?>
+        </table>
 
         <table>
             <tr>
