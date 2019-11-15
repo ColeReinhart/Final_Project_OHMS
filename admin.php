@@ -31,10 +31,10 @@ if(isset($_GET['pat_id'])){
 }
 $add = $_GET['add'] ?? NULL;
 if(isset($add)){
-
-    $pat = $_GET['pat'] ?? '';
-    $date = $_GET['date'] ?? '';
-    $group = $_GET['group'] ?? '';
+    var_dump($_GET);
+    $pat = $_GET['pat']?? NULL;
+    $date = $_GET['date']?? NULL;
+    $group = $_GET['group']?? NULL;
     $sql = "UPDATE Patient SET `Group` = '$group', Admission_Date = '$date' WHERE `Pat_ID` = '$pat'";
     mysqli_query($conn,$sql);
     // header("Location:admin.php");
@@ -71,7 +71,7 @@ if(isset($add)){
         <form Method="GET" action="admin.php">
         <input name="pat"type="hidden" value="<?php if(isset($pat)){echo $pat; } ?>">
         <label>Group</label>
-        <select name="select" name="group" class="input_space">
+        <select name="group" class="input_space">
             <option> Choose Group </option>
             <option value="A"> A </option>
             <option value="B"> B </option>
