@@ -3,10 +3,8 @@ include_once 'db.php';
 
 session_start();
 
-if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == "Caregiver" || $_SESSION['role'] == "Supervisor" || $_SESSION['role'] == "Admin" ) {
-    echo $_SESSION['role'];
-
-
+if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == "Admin") {
+    // echo $_SESSION['role'];
 } else {
     header("location: index.php");
 }
@@ -23,52 +21,36 @@ if(isset($_GET['logout'])) {
         <form action="" class = "logout">
             <button type="submit" class="btn" name = "logout">Logout</button>
         </form>
-        <h1>Roster</h1>
+        <h1>Roles</h1>
 
-        <label>Date:</label>
-        <input type="Date">
         <ul>
             <li><a href="admin.php">Home</a></li>
-            <li><a href="role.php">Roles</a></li>
+            <li><a class="on" href="role.php">Roles</a></li>
             <li><a href="ad_emp.php">Employee</a></li>
             <li><a href="ad_pat.php">Patients</a></li>
             <li><a href="reg_app.php">Registration Approval</a></li>
-            <li><a class="on" href="roster.php">Roster</a></li>
+            <li><a href="roster.php">Roster</a></li>
             <li><a href="ad_report.php">Admin's Report</a></li>
             <li><a href="payment.php">Payment</a></li>
         </ul>
 
-        <label>Date:</label>
-        <input type="text">
-        <br>
-        
         <table>
             <tr>
-                <th>Supervisor</th>
-                <th>Doctor</th>
-                <th>Caregiver1</th>
-                <th>Caregiver2</th>
-                <th>Caregiver3</th>
-                <th>Caregiver4</th>
+                <th>Role</th>
+                <th>Access Level</th>
             </tr>
             <tr>
                 <td>Name</td>
-                <td>Name</td>
-                <td>Name</td>
-                <td>Name</td>
-                <td>Name</td>
-                <td>Name</td>
-            </tr>
-            <tr>
-                <td>Group Name</td>
-                <td>Group Name</td>
-                <td>Group Name</td>
-                <td>Group Name</td>
-                <td>Group Name</td>
-                <td>Group Name</td>
+                <td>Number</td>
             </tr>
         </table>
 
+        <label>New Role</label>
+        <input type="text">
+        <br>
+
+        <label> Access Level</label>
+        <input type="text">
 
         <footer>
             <ul>

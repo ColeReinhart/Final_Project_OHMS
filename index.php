@@ -4,7 +4,7 @@ include_once 'db.php';
 session_start();
 
 if(isset($_GET['login'])) {
-  $search = "SELECT Employee.Email, Employee.Password, Employee.Role, Patient.Email, Patient.Password, Patient.Role FROM Employee, Patient;";
+  $search = "SELECT Employee.Email, Employee.Password, Employee.Role, Patient.Email, Patient.Password, Patient.Role, FAMILY_MEMBER.Email, FAMILY_MEMBER.Password, FAMILY_MEMBER.Role FROM Employee, Patient, FAMILY_MEMBER;";
   $result = mysqli_query($conn, $search);
   while($row = mysqli_fetch_row($result)) {
     if ($row[0] == $_GET['email'] ?? '') {
@@ -19,10 +19,6 @@ if(isset($_GET['login'])) {
             $_SESSION['loggedIn'] == true;
             header( 'Location: caregiver.php');
             break;
-          case 'Family_Member':
-            $_SESSION['loggedIn'] == true;
-            header( 'Location: fam_member.php');
-            break; 
           case 'Admin':
             $_SESSION['loggedIn'] == true;
             header( 'Location: admin.php');
@@ -39,6 +35,13 @@ if(isset($_GET['login'])) {
           $_SESSION['loggedIn'] == true;
           $_SESSION['role'] = $row[5];
           header( 'Location: patient.php');
+        }
+      }
+      if ($row[6] == $_GET['email'] ?? '') {
+        if ($row[7] == $_GET['psw'] ?? ''){
+          $_SESSION['loggedIn'] == true;
+          $_SESSION['role'] = $row[8];
+          header( 'Location: fam_member.php');
         }
       }
     }
@@ -84,6 +87,17 @@ if(isset($_GET['login'])) {
     }
 
 </script>
+
+<footer>
+  <ul>
+    <li>Phone: 717-555-5555</li>
+    <br>
+    <li>Email: oldfartsanddarts@fakemail.com</li>
+    <br>
+    <li>Fax: 171-123-4567</li>
+    <br>
+  </ul>
+</footer>
 
 </body>
 </html>

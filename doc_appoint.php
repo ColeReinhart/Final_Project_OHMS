@@ -21,35 +21,35 @@ if(isset($_GET['logout'])) {
         <form action="" class = "logout">
             <button type="submit" class="btn" name = "logout">Logout</button>
         </form>
-        <h1>Doctor Home</h1>
+        <h1>Doctors' Appointments</h1>
 
         <ul>
-            <li><a class = 'on' href="doc_home.php">Home</a></li>
-            <li><a href="doc_appoint.php">Doctors' Appointments</a></li>
+            <li><a href="doc_home.php">Home</a></li>
+            <li><a class = 'on' href="doc_appoint.php">Doctors' Appointments</a></li>
             <li><a href="pat_doc.php">Patients' of the Doctor</a></li>
         </ul>
-        
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Date</th>
-                <th>Comment</th>
-                <th>Morning Medicine</th>
-                <th>Afternoon Medicine</th>
-                <th>Night Medicine</th>
-            </tr>
-        </table>
 
-        <label>Date:</label>
-        <input type="text">
-        <br>
+        <form action="">
+            <label>Patient ID</label>
+            <input type="text">
+            <br>
 
-        <table>
-            <tr>
-                <th>Patient</th>
-                <th>Date</th>
-            </tr>
-        </table>
+            <label>Date</label>
+            <input type="date">
+            <br>
+
+            <select name="doctors" id="doctors" value="Doctors">
+                <option value="stuff">Stuff</option>
+            </select>
+            <br>
+
+            <label>Patient Name:</label>
+            <?php echo 'Patient Name'?>
+            <br>
+
+            <button>OKAY</button>
+            <button>CANCEL</button>
+        </form>
 
         <footer>
             <ul>
@@ -61,5 +61,6 @@ if(isset($_GET['logout'])) {
                 <br>
             </ul>
         </footer>
-    </body>  
+    </body>
 </html>
+

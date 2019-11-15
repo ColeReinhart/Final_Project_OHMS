@@ -6,6 +6,7 @@ session_start();
 if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == "Admin") {
     echo $_SESSION['role'];
 
+
 } else {
     header("location: index.php");
 }
@@ -51,9 +52,15 @@ if(isset($add)){
         <h1>Admin Home</h1>
         <h3>Additional Information</h3>
         <ul>
-            <li><a href="">Roles</a></li>
-             <li><a href="">Employee</a></li>
-            <li><a href="">Patients</a></li>
+
+            <li><a class="on" href="admin.php">Home</a></li>
+            <li><a href="role.php">Roles</a></li>
+            <li><a href="ad_emp.php">Employee</a></li>
+            <li><a href="ad_pat.php">Patients</a></li>
+            <li><a href="reg_app.php">Registration Approval</a></li>
+            <li><a href="roster.php">Roster</a></li>
+            <li><a href="ad_report.php">Admin's Report</a></li>
+            <li><a href="payment.php">Payment</a></li>
         </ul>
         <form action="admin.php">
         <label>Patient ID</label>
@@ -80,5 +87,15 @@ if(isset($add)){
         <input type="text" name="name" value="<?php if(isset($var)){echo $var; }?>" readonly> 
         <input type="submit" name="add" >
         </form>
+        <footer>
+            <ul>
+                <li>Phone: 717-555-5555</li>
+                <br>
+                <li>Email: oldfartsanddarts@fakemail.com</li>
+                <br>
+                <li>Fax: 171-123-4567</li>
+                <br>
+            </ul>
+        </footer>
     </body>
 </html>

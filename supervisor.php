@@ -3,7 +3,7 @@ include_once 'db.php';
 
 session_start();
 
-if(($_SESSION['loggedIn'] = true) && ($_SESSION['role'] == "supervisor") || $_SESSION['role'] == "admin") {
+if(($_SESSION['loggedIn'] = true) && ($_SESSION['role'] == "Supervisor") || $_SESSION['role'] == "admin") {
     // echo $_SESSION['role'];
 } else {
     header("location: index.php");
@@ -22,6 +22,11 @@ if(isset($_GET['logout'])) {
             <button type="submit" class="btn" name = "logout">Logout</button>
         </form>
         <h1>Superviser Home</h1>
+
+        <ul>
+            <li><a class = 'on' href="supervisor.php">Home</a></li>
+            <li><a href="new_roster.php">New Roster</a></li>
+        </ul>
 
         <label>Date:</label>
         <input type="text">
@@ -54,5 +59,15 @@ if(isset($_GET['logout'])) {
             </tr>
         </table>
        
+        <footer>
+            <ul>
+                <li>Phone: 717-555-5555</li>
+                <br>
+                <li>Email: oldfartsanddarts@fakemail.com</li>
+                <br>
+                <li>Fax: 171-123-4567</li>
+                <br>
+            </ul>
+        </footer>
     </body>  
 </html>
