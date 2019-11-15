@@ -3,8 +3,10 @@ include_once 'db.php';
 
 session_start();
 
-if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == "Admin") {
-    // echo $_SESSION['role'];
+if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == "Caregiver" || $_SESSION['role'] == "Supervisor" || $_SESSION['role'] == "Admin" ) {
+    echo $_SESSION['role'];
+
+
 } else {
     header("location: index.php");
 }
@@ -23,6 +25,8 @@ if(isset($_GET['logout'])) {
         </form>
         <h1>Roster</h1>
 
+        <label>Date:</label>
+        <input type="Date">
         <ul>
             <li><a href="admin.php">Home</a></li>
             <li><a href="role.php">Roles</a></li>
@@ -64,6 +68,7 @@ if(isset($_GET['logout'])) {
                 <td>Group Name</td>
             </tr>
         </table>
+
 
         <footer>
             <ul>
