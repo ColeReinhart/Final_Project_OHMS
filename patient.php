@@ -4,7 +4,7 @@ include_once 'db.php';
 session_start();
 
 if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == "Patient" || $_SESSION['role'] == "Admin") {
-    echo $_SESSION['role'];
+
 } else {
     header("location: index.php");
 }
@@ -60,5 +60,16 @@ if(isset($_GET['logout'])) {
                 <td><input type="checkbox"></td>
             </tr>
         </table>
+
+        <footer>
+            <ul>
+                <li>Phone: 717-555-5555</li>
+                <br>
+                <li>Email: oldfartsanddarts@fakemail.com</li>
+                <br>
+                <li>Fax: 171-123-4567</li>
+                <br>
+            </ul>
+        </footer>
     </body>  
 </html>
