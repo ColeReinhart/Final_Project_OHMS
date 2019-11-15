@@ -21,18 +21,51 @@ if(isset($_GET['logout'])) {
         <form action="" class = "logout">
             <button type="submit" class="btn" name = "logout">Logout</button>
         </form>
-        <h1>Admin Home</h1>
+        <h1>Report</h1>
 
         <ul>
-            <li><a class="on" href="admin.php">Home</a></li>
+            <li><a href="admin.php">Home</a></li>
             <li><a href="role.php">Roles</a></li>
             <li><a href="ad_emp.php">Employee</a></li>
             <li><a href="ad_pat.php">Patients</a></li>
             <li><a href="reg_app.php">Registration Approval</a></li>
             <li><a href="roster.php">Roster</a></li>
-            <li><a href="ad_report.php">Admin's Report</a></li>
+            <li><a class="on" href="ad_report.php">Admin's Report</a></li>
             <li><a href="payment.php">Payment</a></li>
         </ul>
+
+        <label>Date</label>
+        <input type="date">
+        <br>
+
+        <label>Missed Patient Activity</label>
+
+        <table>
+            <tr>
+                <th>Patient's Name</th>
+                <th>Doctor's Name</th>
+                <th>Doctor's Appointment</th>
+                <th>Caregiver's Name</th>
+                <th>Morning Medicine</th>
+                <th>Afternoon Medicine</th>
+                <th>Night Medicine</th>
+                <th>Breakfast</th>
+                <th>Lunch</th>
+                <th>Dinner</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><input type="checkbox"></td>
+                <td></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+            </tr>
+        </table>
 
         <footer>
             <ul>

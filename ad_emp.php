@@ -21,18 +21,38 @@ if(isset($_GET['logout'])) {
         <form action="" class = "logout">
             <button type="submit" class="btn" name = "logout">Logout</button>
         </form>
-        <h1>Admin Home</h1>
+        <h1>Employees</h1>
 
         <ul>
-            <li><a class="on" href="admin.php">Home</a></li>
+            <li><a href="admin.php">Home</a></li>
             <li><a href="role.php">Roles</a></li>
-            <li><a href="ad_emp.php">Employee</a></li>
+            <li><a class="on" href="ad_emp.php">Employee</a></li>
             <li><a href="ad_pat.php">Patients</a></li>
             <li><a href="reg_app.php">Registration Approval</a></li>
             <li><a href="roster.php">Roster</a></li>
             <li><a href="ad_report.php">Admin's Report</a></li>
             <li><a href="payment.php">Payment</a></li>
         </ul>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Salary</th>
+            </tr>
+        </table>
+
+        <label>Employee ID</label>
+        <input type="text" >
+        <br>
+
+        <label>New Salary</label>
+        <input type="text" >
+        <br>
+
+        <button>OKAY</button>
+        <button>CANCEL</button>
 
         <footer>
             <ul>
