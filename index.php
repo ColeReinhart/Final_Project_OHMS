@@ -4,7 +4,7 @@ include_once 'db.php';
 session_start();
 
 if(isset($_GET['login'])) {
-  $search = "SELECT Employee.Email, Employee.Password, Employee.Role, Patient.Email, Patient.Password, Patient.Role, FAMILY_MEMBER.Email, FAMILY_MEMBER.Password, FAMILY_MEMBER.Role FROM Employee, Patient, FAMILY_MEMBER;";
+  $search = "SELECT Employee.Email, Employee.Password, Employee.Role, Patient.Email, Patient.Password, Patient.Role, FAMILY_MEMBER.Email, FAMILY_MEMBER.Password, FAMILY_MEMBER.Role, Employee.Emp_ID, Patient.Pat_ID, FAMILY_MEMBER.FAM_ID FROM Employee, Patient, FAMILY_MEMBER;";
   $result = mysqli_query($conn, $search);
   while($row = mysqli_fetch_row($result)) {
     if ($row[0] == $_GET['email'] ?? '') {
@@ -13,18 +13,22 @@ if(isset($_GET['login'])) {
         switch ($_SESSION['role']) {
           case 'Doctor':
             $_SESSION['loggedIn'] = true;
+            $_SESSION['empID'] = $row[9];
             header( 'Location: doc_home.php');
             break;
           case 'Caregiver':
             $_SESSION['loggedIn'] == true;
+            $_SESSION['empID'] = $row[9];
             header( 'Location: caregiver.php');
             break;
           case 'Admin':
             $_SESSION['loggedIn'] == true;
+            $_SESSION['empID'] = $row[9];
             header( 'Location: admin.php');
             break;
           case 'Supervisor':
             $_SESSION['loggedIn'] == true;
+            $_SESSION['empID'] = $row[9];
             header( 'Location: supervisor.php');
             break;
           }
@@ -34,6 +38,7 @@ if(isset($_GET['login'])) {
         if ($row[4] == $_GET['psw'] ?? ''){
           $_SESSION['loggedIn'] == true;
           $_SESSION['role'] = $row[5];
+          $_SESSION['patID'] = $row[10];
           header( 'Location: patient.php');
         }
       }
@@ -41,6 +46,7 @@ if(isset($_GET['login'])) {
         if ($row[7] == $_GET['psw'] ?? ''){
           $_SESSION['loggedIn'] == true;
           $_SESSION['role'] = $row[8];
+          $_SESSION['famID'] = $row[11];
           header( 'Location: fam_member.php');
         }
       }
