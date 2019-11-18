@@ -31,7 +31,6 @@ if(isset($_GET['pat_id'])){
 }
 $add = $_GET['add'] ?? NULL;
 if(isset($add)){
-    var_dump($_GET);
     $pat = $_GET['pat']?? NULL;
     $date = $_GET['date']?? NULL;
     $group = $_GET['group']?? NULL;

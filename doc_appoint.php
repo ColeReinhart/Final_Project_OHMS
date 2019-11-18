@@ -13,6 +13,28 @@ if(isset($_GET['logout'])) {
     $_SESSION['role'] = NULL;
     header("location: index.php");
 }
+
+if(isset($_GET['pat_id'])){
+    
+    $pat = $_GET['pat'];
+    $sql = "SELECT * FROM `Patient` WHERE `Pat_ID` = '$pat'";
+    $result = mysqli_query($conn,$sql);
+    if ($result) {
+        while($row=mysqli_fetch_row($result)){
+        $var = ($row[1]. " " . $row[2]);
+    }
+}
+}
+
+if(isset($_GET['submit'])){
+    $Date = $_GET['Date']; 
+    $Pat_ID = $_GET['Pat_ID'];
+    $Doc_ID = $_GET['Doc_ID'];
+if( $Date != "" & $Pat_ID != "" & $Doc_ID != ""){
+    $sql = "INSERT INTO `Appointments`(Pat_ID, Doc_ID, Date) VALUES ('$Pat_ID','$Doc_ID','$Date')";
+    mysqli_query($conn,$sql);
+}
+}
 ?>
 
 <html>
@@ -29,25 +51,33 @@ if(isset($_GET['logout'])) {
             <li><a href="pat_doc.php">Patients' of the Doctor</a></li>
         </ul>
 
-        <form action="">
-            <label>Patient ID</label>
-            <input type="text">
-            <br>
+        <form action="doc_appoint.php">
+        <label>Patient ID</label>
+        <input name="pat"type="number" value="<?php if(isset($pat)){echo $pat; } ?>">
+        <input type="submit" name="pat_id" >
+        </form>    
+        <form action="doc_appoint.php">
 
             <label>Date</label>
-            <input type="date">
+            <input name="Date" type="date">
             <br>
-
-            <select name="doctors" id="doctors" value="Doctors">
-                <option value="stuff">Stuff</option>
+            <label>Assign Doctor</label>
+            <select name="Doc_ID" id="doctors" value="Doctors">
+                <?php
+                $sql = mysqli_query($conn, "SELECT Emp_ID, Fname, Lname FROM Employee WHERE Role = 'Doctor';");
+                while ($row = $sql->fetch_assoc()){
+                    echo '<option value=" '.$row['Emp_ID'].' "> '.$row['Fname'].' </option>';     
+                }
+                ?>
             </select>
             <br>
 
             <label>Patient Name:</label>
-            <?php echo 'Patient Name'?>
+            <input type="text" name="name" value="<?php if(isset($var)){echo $var; }?>" readonly> 
             <br>
+            <input type="hidden" name="Pat_ID" type="number" value="<?php if(isset($pat)){echo $pat; } ?>">
 
-            <button>OKAY</button>
+            <input type="submit" name="submit">OKAY</input>
             <button>CANCEL</button>
         </form>
 
