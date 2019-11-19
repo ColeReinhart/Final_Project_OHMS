@@ -13,7 +13,24 @@ if(isset($_GET['logout'])) {
     unset($_SESSION['logout']);
     $_SESSION['role'] = NULL;
     header("location: index.php");
+
 }
+    if(isset($_GET['submit'])){
+
+        $date = $_GET['date']; 
+        $supervisor = $_GET['supervisor'];
+        $doctor = $_GET['doctor'];
+        $caregiver1 = $_GET['caregiver1'];
+        $caregiver2 = $_GET['caregiver2'];
+        $caregiver3 = $_GET['caregiver3'];
+        $caregiver4 = $_GET['caregiver4'];
+    if($date != "" & $supervisor != "" & $doctor != "" & $caregiver1 != ""
+    & $caregiver2 != "" & $caregiver3 != "" & $caregiver4 != ""){
+        $sql = "INSERT INTO `Roster`(Schedule_Date, Supervisor_id, Doctor_id, Group1_id, Group2_id, Group3_id, Group4_id) VALUES ('$date','$supervisor','$doctor','$caregiver1','$caregiver2','$caregiver3','$caregiver4')";
+        mysqli_query($conn,$sql);
+}
+    }
+
 ?>
 <html>
     <link href="style.css" rel="stylesheet" type="text/css">
@@ -28,53 +45,81 @@ if(isset($_GET['logout'])) {
             <li><a class = 'on' href="new_roster.php">New Roster</a></li>
         </ul>
 
+        <form action="new_roster.php">
+
         <label>Date:</label>
-        <input type="date">
+        <input name="date" type="date">
         <br>
 
         <label>Supervisor:</label>
         <select name="supervisor" id="supervisor">
-            <option value="supervisors">Supervisors</option>
+        <?php
+                $sql = mysqli_query($conn, "SELECT Emp_ID, Fname, Lname FROM Employee WHERE Role = 'Supervisor';");
+                while ($row = $sql->fetch_assoc()){
+                    echo '<option value=" '.$row['Emp_ID'].' "> '.$row['Fname'].' </option>';     
+                }
+                ?>
         </select>
         <br>
 
         <label>Doctor:</label>
         <select name="doctor" id="doctor">
-            <option value="doctors">Doctors</option>
-        </select>
+        <?php
+                $sql = mysqli_query($conn, "SELECT Emp_ID, Fname, Lname FROM Employee WHERE Role = 'Doctor';");
+                while ($row = $sql->fetch_assoc()){
+                    echo '<option value=" '.$row['Emp_ID'].' "> '.$row['Fname'].' </option>';     
+                }
+                ?>        </select>
         <br>
 
         <label>Caregiver1:</label>
         <select name="caregiver1" id="caregiver1">
-            <option value="caregiver1">Caregiver1</option>
-        </select>
+        <?php
+                $sql = mysqli_query($conn, "SELECT Emp_ID, Fname, Lname FROM Employee WHERE Role = 'Caregiver';");
+                while ($row = $sql->fetch_assoc()){
+                    echo '<option value=" '.$row['Emp_ID'].' "> '.$row['Fname'].' </option>';     
+                }
+                ?>        </select>
         <?php echo 'Group 1'?>
         <br>
 
         <label>Caregiver2:</label>
         <select name="caregiver2" id="caregiver2">
-            <option value="caregiver2">Caregiver2</option>
-        </select>
+        <?php
+                $sql = mysqli_query($conn, "SELECT Emp_ID, Fname, Lname FROM Employee WHERE Role = 'Caregiver';");
+                while ($row = $sql->fetch_assoc()){
+                    echo '<option value=" '.$row['Emp_ID'].' "> '.$row['Fname'].' </option>';     
+                }
+                ?>        </select>
         <?php echo 'Group 2'?>
         <br>
 
         <label>Caregiver2:</label>
         <select name="caregiver3" id="caregiver3">
-            <option value="caregiver3">Caregiver3</option>
-        </select>
+        <?php
+                $sql = mysqli_query($conn, "SELECT Emp_ID, Fname, Lname FROM Employee WHERE Role = 'Caregiver';");
+                while ($row = $sql->fetch_assoc()){
+                    echo '<option value=" '.$row['Emp_ID'].' "> '.$row['Fname'].' </option>';     
+                }
+                ?>        </select>
         <?php echo 'Group 3'?>
         <br>
 
         <label>Caregiver4:</label>
         <select name="caregiver4" id="caregiver4">
-            <option value="caregiver4">Caregiver4</option>
+        <?php
+                $sql = mysqli_query($conn, "SELECT Emp_ID, Fname, Lname FROM Employee WHERE Role = 'Caregiver';");
+                while ($row = $sql->fetch_assoc()){
+                    echo '<option value=" '.$row['Emp_ID'].' "> '.$row['Fname'].' </option>';     
+                }
+                ?>        
         </select>
         <?php echo 'Group 4'?>
         <br>
 
-        <button>OKAY</button>
+        <input type="submit" name="submit" value='OKAY'>
         <button>CANCEL</button>
-
+            </form>
         <footer>
             <ul>
                 <li>Phone: 717-555-5555</li>

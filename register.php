@@ -101,8 +101,6 @@ elseif($role == "Family_Member" & $fname != "" & $lname != "" & $email != "" & $
         </div>
 
     </div>
-
-
         <input id="button" type="submit" name="submit" value="Enter">
 
     </form>
