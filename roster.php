@@ -3,9 +3,7 @@ include_once 'db.php';
 
 session_start();
 
-if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == "Caregiver" || $_SESSION['role'] == "Supervisor"  ) {
-    echo $_SESSION['role'];
-
+if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == "Caregiver" || $_SESSION['role'] == "Supervisor" || $_SESSION['role'] == "Admin" ) {
 } else {
     header("location: index.php");
 }
@@ -54,5 +52,16 @@ if(isset($_GET['logout'])) {
                 <td>Group Name</td>
             </tr>
         </table>
+
+        <footer>
+            <ul>
+                <li>Phone: 717-555-5555</li>
+                <br>
+                <li>Email: oldfartsanddarts@fakemail.com</li>
+                <br>
+                <li>Fax: 171-123-4567</li>
+                <br>
+            </ul>
+        </footer>
     </body>
 </html>

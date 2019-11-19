@@ -4,9 +4,6 @@ include_once 'db.php';
 session_start();
 
 if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == "Admin") {
-    echo $_SESSION['role'];
-
-
 } else {
     header("location: index.php");
 }
@@ -49,7 +46,6 @@ if(isset($add)){
             <button type="submit" class="btn" name = "logout">Logout</button>
         </form>
         <h1>Admin Home</h1>
-        <h3>Additional Information</h3>
         <ul>
 
             <li><a class="on" href="admin.php">Home</a></li>
@@ -61,6 +57,7 @@ if(isset($add)){
             <li><a href="ad_report.php">Admin's Report</a></li>
             <li><a href="payment.php">Payment</a></li>
         </ul>
+        <h3>Additional Information</h3>
         <form action="admin.php">
         <label>Patient ID</label>
         <input name="pat"type="number" value="<?php if(isset($pat)){echo $pat; } ?>">
