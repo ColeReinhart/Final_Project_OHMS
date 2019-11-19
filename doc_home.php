@@ -46,7 +46,7 @@ if(isset($_GET['logout'])) {
             </tr>
             <tr>
                 <?php
-                $med = "SELECT Patient.Fname, Patient.Lname, Appointments.Date, Appointments.Comment, Appointments.Morning_Med, Appointments.Afternoon_Med, Appointments.Night_Med FROM Patient LEFT JOIN Appointments ON Appointments.Pat_ID = Patient.Pat_ID WHERE Patient.doc_id = {$_SESSION['empID']};";
+                $med = "SELECT Patient.Fname, Patient.Lname, Appointments.Date, Appointments.Comment, Appointments.Morning_Med, Appointments.Afternoon_Med, Appointments.Night_Med FROM Patient LEFT JOIN Appointments ON Appointments.Pat_ID = Patient.Pat_ID WHERE Appointments.doc_id = {$_SESSION['empID']};";
                 $result = mysqli_query($conn, $med);
                 if($result) {
                     while($row = mysqli_fetch_row($result)) {
@@ -85,7 +85,7 @@ if(isset($_GET['logout'])) {
                 <th>Afternoon_Med</th>
                 <th>Night_Med</th>
                 </tr>';
-            $search = "SELECT Patient.Fname, Patient.Lname, Appointments.Date, Appointments.Comment, Appointments.Morning_Med, Appointments.Afternoon_Med, Appointments.Night_Med FROM Patient LEFT JOIN Appointments ON Appointments.Pat_ID = Patient.Pat_ID WHERE `{$_POST['col']}` LIKE '{$_POST['val']}' AND Patient.doc_id = {$_SESSION['empID']};";
+            $search = "SELECT Patient.Fname, Patient.Lname, Appointments.Date, Appointments.Comment, Appointments.Morning_Med, Appointments.Afternoon_Med, Appointments.Night_Med FROM Patient LEFT JOIN Appointments ON Appointments.Pat_ID = Patient.Pat_ID WHERE `{$_POST['col']}` LIKE '{$_POST['val']}' AND Appointments.doc_id = {$_SESSION['empID']};";
             $result = mysqli_query($conn, $search);;
             if($result) {
                 while($row = mysqli_fetch_row($result)) {
