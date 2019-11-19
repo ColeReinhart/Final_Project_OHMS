@@ -32,6 +32,7 @@ if(isset($_GET['logout'])) {
             <li><a class = 'on' href="doc_home.php">Home</a></li>
             <li><a href="doc_appoint.php">Doctors' Appointments</a></li>
             <li><a href="pat_doc.php">Patients' of the Doctor</a></li>
+            <li><a href="roster.php">Roster</a></li>
         </ul>
         
         <table>

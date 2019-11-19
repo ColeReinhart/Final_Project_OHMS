@@ -49,6 +49,7 @@ if( $Date != "" & $Pat_ID != "" & $Doc_ID != ""){
             <li><a href="doc_home.php">Home</a></li>
             <li><a class = 'on' href="doc_appoint.php">Doctors' Appointments</a></li>
             <li><a href="pat_doc.php">Patients' of the Doctor</a></li>
+            <li><a href="pat_doc.php">Roster</a></li>
         </ul>
 
         <form action="doc_appoint.php">

@@ -27,16 +27,31 @@ if(isset($_GET['logout'])) {
             <li><a href="doc_home.php">Home</a></li>
             <li><a href="doc_appoint.php">Doctors' Appointments</a></li>
             <li><a class = 'on' href="pat_doc.php">Patients' of the Doctor</a></li>
+            <li><a href="Roster.php">Roster</a></li>
         </ul>
 
         <table>
-            <tr>
-                <th>Date</th>
-                <th>Comment</th>
-                <th>Morning Medicine</th>
-                <th>Afternoon Medicine</th>
-                <th>Night Medicine</th>
-            </tr>
+        <?php 
+            // if(isset($_POST['search'])) {
+            //     echo "<tr>
+            //     <th>Date</th>
+            //     <th>Comment</th>
+            //     <th>Morning Medicine</th>
+            //     <th>Afternoon Medicine</th>
+            //     <th>Night Medicine</th>
+            //     </tr>";
+            //     $search = "SELECT Patient.Fname, Patient.Lname, Appointments.Date FROM Patient Join Appointments WHERE Appointments.Pat_ID = Patient.Pat_ID AND Appointments.doc_id = {$_SESSION['empID']} AND Appointments.Date <= '{$_POST['typedate']}';";
+            //     $result = mysqli_query($conn, $search);;
+            //     if($result) {
+            //         while($row = mysqli_fetch_row($result)) {
+            //             echo "<th>$row[0]</th>";
+            //             echo "<th>$row[1]</th>";
+            //             echo "<th>$row[2]</th>";
+            //             echo "</tr>";
+            //             }
+            //         }
+            //     }
+    ?>
         </table>
 
         <button>New Perscription</button>
