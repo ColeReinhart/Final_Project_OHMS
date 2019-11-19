@@ -6,6 +6,7 @@ session_start();
 $colones = $_POST['col'] ?? '';
 $coltwos = $_POST['val'] ?? '';
 $table = $_POST['table'] ?? '';
+$date = $_POST['typedate'] ?? '';
 
 if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == 'Doctor') {
 } else {
@@ -45,7 +46,7 @@ if(isset($_GET['logout'])) {
             </tr>
             <tr>
                 <?php
-                $med = "SELECT Patient.Fname, Patient.Lname, Medicine.Date, Medicine.Comment, Medicine.Morning_Med, Medicine.Afternoon_Med, Medicine.Night_Med FROM Patient LEFT JOIN Medicine ON Medicine.Pat_ID = Patient.Pat_ID WHERE Patient.doc_id = {$_SESSION['empID']};";
+                $med = "SELECT Patient.Fname, Patient.Lname, Appointments.Date, Appointments.Comment, Appointments.Morning_Med, Appointments.Afternoon_Med, Appointments.Night_Med FROM Patient LEFT JOIN Appointments ON Appointments.Pat_ID = Patient.Pat_ID WHERE Patient.doc_id = {$_SESSION['empID']};";
                 $result = mysqli_query($conn, $med);
                 if($result) {
                     while($row = mysqli_fetch_row($result)) {
@@ -71,55 +72,78 @@ if(isset($_GET['logout'])) {
             <input type="submit" name="submits" value="Search">
         </form>
 
-        <label>Date:</label>
-        <input type="text">
-        <br>
-
         <table name = "table">
         <?php
         if(isset($_POST['submits'])) {
-            $search = "SELECT Patient.Fname, Patient.Lname, Medicine.Date, Medicine.Comment, Medicine.Morning_Med, Medicine.Afternoon_Med, Medicine.Night_Med FROM Patient LEFT JOIN Medicine ON Medicine.Pat_ID = Patient.Pat_ID WHERE `{$_POST['col']}` LIKE '{$_POST['val']}' AND Patient.doc_id = {$_SESSION['empID']};";
+            echo '<h3> Search Results </h3>';
+            echo'<tr>
+                <th>Fname</th>
+                <th>Lname</th>
+                <th>Date</th>
+                <th>Comment</th>
+                <th>Morning_Med</th>
+                <th>Afternoon_Med</th>
+                <th>Night_Med</th>
+                </tr>';
+            $search = "SELECT Patient.Fname, Patient.Lname, Appointments.Date, Appointments.Comment, Appointments.Morning_Med, Appointments.Afternoon_Med, Appointments.Night_Med FROM Patient LEFT JOIN Appointments ON Appointments.Pat_ID = Patient.Pat_ID WHERE `{$_POST['col']}` LIKE '{$_POST['val']}' AND Patient.doc_id = {$_SESSION['empID']};";
             $result = mysqli_query($conn, $search);;
             if($result) {
-                $row = mysqli_fetch_row($result);
-                echo "<th>$row[0]</th>";
-                echo "<th>$row[1]</th>";
-                echo "<th>$row[2]</th>";
-                echo "<th>$row[3]</th>";
-                echo "<th>$row[4]</th>";
-                echo "<th>$row[5]</th>";
-                echo "<th>$row[6]</th>";
-                echo "</tr>";
+                while($row = mysqli_fetch_row($result)) {
+                    echo "<th>$row[0]</th>";
+                    echo "<th>$row[1]</th>";
+                    echo "<th>$row[2]</th>";
+                    echo "<th>$row[3]</th>";
+                    echo "<th>$row[4]</th>";
+                    echo "<th>$row[5]</th>";
+                    echo "<th>$row[6]</th>";
+                    echo "</tr>";
+                }
             }
         }
 
 ?>
         </table>
 
+        <form method = "POST" action="doc_home.php" name = "date">
+            <label>Date:</label>
+            <input type="date" name = "typedate">
+            <input type="submit" name="search" value="search">
+        </form>
+        <br>
+
         <table>
-            <tr>
-                <th>Patient</th>
+            <?php 
+            if(isset($_POST['search'])) {
+                echo "<h3>Search Results</h3>";
+                echo "<tr>
+                <th>Fname</th>
+                <th>Lname</th>
                 <th>Date</th>
-            </tr>
-            <tr>
-            <?php
-            // $search = "SELECT Patient.Fname, Patient.Lname, Medicine.Date, Medicine.Comment, Medicine.Morning_Med, Medicine.Afternoon_Med, Medicine.Night_Med FROM Patient LEFT JOIN Medicine ON Medicine.Pat_ID = Patient.Pat_ID WHERE `{$_POST['col']}` LIKE '{$_POST['val']}';";
-            // $result = mysqli_query($conn, $search);;
-            // if($result) {
-            //     $row = mysqli_fetch_row($result);
-            //     echo "<th>$row[0]</th>";
-            //     echo "<th>$row[1]</th>";
-            //     echo "<th>$row[2]</th>";
-            //     echo "<th>$row[3]</th>";
-            //     echo "<th>$row[4]</th>";
-            //     echo "<th>$row[5]</th>";
-            //     echo "<th>$row[6]</th>";
-            //     echo "</tr>";
-            // }
+                </tr>";
+                $search = "SELECT Patient.Fname, Patient.Lname, Appointments.Date FROM Patient Join Appointments WHERE Appointments.Pat_ID = Patient.Pat_ID AND Appointments.doc_id = {$_SESSION['empID']} AND Appointments.Date <= '{$_POST['typedate']}';";
+                $result = mysqli_query($conn, $search);;
+                if($result) {
+                    while($row = mysqli_fetch_row($result)) {
+                        echo "<th>$row[0]</th>";
+                        echo "<th>$row[1]</th>";
+                        echo "<th>$row[2]</th>";
+                        echo "</tr>";
+                        }
+                    }
+                }
     ?>
             </tr>
         </table>
 
+        <!-- $search = "SELECT Patient.Fname, Patient.Lname, Appointments.Date FROM Patient Join Appointments WHERE Appointments.Pat_ID = Patient.Pat_ID AND Appointments.doc_id = {$_SESSION['empID']};";
+                $result = mysqli_query($conn, $search);;
+                if($result) {
+                    $row = mysqli_fetch_row($result);
+                    echo "<th>$row[0]</th>";
+                    echo "<th>$row[1]</th>";
+                    echo "<th>$row[2]</th>";
+                    echo "</tr>";
+                } -->
         <footer>
             <ul>
                 <li>Phone: 717-555-5555</li>
