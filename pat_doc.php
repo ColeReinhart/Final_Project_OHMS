@@ -16,7 +16,14 @@ if(isset($_GET['logout'])) {
 ?>
 
 <html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="style.css" rel="stylesheet" type="text/css">
+
+    <title>Doctor Patient</title>
+</head>
     <body>
         <form action="" class = "logout">
             <button type="submit" class="btn" name = "logout">Logout</button>
@@ -32,29 +39,29 @@ if(isset($_GET['logout'])) {
 
         <table>
         <?php 
-            // if(isset($_POST['search'])) {
-            //     echo "<tr>
-            //     <th>Date</th>
-            //     <th>Comment</th>
-            //     <th>Morning Medicine</th>
-            //     <th>Afternoon Medicine</th>
-            //     <th>Night Medicine</th>
-            //     </tr>";
-            //     $search = "SELECT Patient.Fname, Patient.Lname, Appointments.Date FROM Patient Join Appointments WHERE Appointments.Pat_ID = Patient.Pat_ID AND Appointments.doc_id = {$_SESSION['empID']} AND Appointments.Date <= '{$_POST['typedate']}';";
-            //     $result = mysqli_query($conn, $search);;
-            //     if($result) {
-            //         while($row = mysqli_fetch_row($result)) {
-            //             echo "<th>$row[0]</th>";
-            //             echo "<th>$row[1]</th>";
-            //             echo "<th>$row[2]</th>";
-            //             echo "</tr>";
-            //             }
-            //         }
-            //     }
+            echo "<tr>
+            <th>Date</th>
+            <th>Comment</th>
+            <th>Morning Medicine</th>
+            <th>Afternoon Medicine</th>
+            <th>Night Medicine</th>
+            </tr>";
+            $search = "SELECT Appointments.Date, Appointments.Comment, Appointments.Morning_Med, Appointments.Afternoon_Med, Appointments.Night_Med FROM Patient LEFT JOIN Appointments ON Appointments.Pat_ID = Patient.Pat_ID WHERE Appointments.doc_id = {$_SESSION['empID']};";
+            $result = mysqli_query($conn, $search);;
+            if($result) {
+                while($row = mysqli_fetch_row($result)) {
+                    echo "<th>$row[0]</th>";
+                    echo "<th>$row[1]</th>";
+                    echo "<th>$row[2]</th>";
+                    echo "<th>$row[3]</th>";
+                    echo "<th>$row[4]</th>";
+                    echo "</tr>";
+                }
+            }
     ?>
         </table>
 
-        <button>New Perscription</button>
+        <label>New Perscription</label>
 
         <table>
             <tr>
