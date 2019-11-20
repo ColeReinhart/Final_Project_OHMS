@@ -38,7 +38,6 @@ if(isset($_GET['logout'])) {
         <ul>
             <li><a class = 'on' href="doc_home.php">Home</a></li>
             <li><a href="doc_appoint.php">Doctors' Appointments</a></li>
-            <li><a href="pat_doc.php">Patients' of the Doctor</a></li>
             <li><a href="roster.php">Roster</a></li>
         </ul>
         
@@ -80,9 +79,16 @@ if(isset($_GET['logout'])) {
             <input type="submit" name="submits" value="Search">
         </form>
 
-        <table name = "table">
+        <form method = "POST" action="doc_home.php" name = "date">
+            <label>Date:</label>
+            <input type="date" name = "typedate">
+            <input type="submit" name="search" value="search">
+        </form>
+        <br>
+
         <?php
         if(isset($_POST['submits'])) {
+            echo "<table>";
             echo '<h3> Search Results </h3>';
             echo'<tr>
                 <th>Fname</th>
@@ -108,50 +114,42 @@ if(isset($_GET['logout'])) {
                 }
             }
         }
-
+        
 ?>
-        </table>
-
-        <form method = "POST" action="doc_home.php" name = "date">
-            <label>Date:</label>
-            <input type="date" name = "typedate">
-            <input type="submit" name="search" value="search">
-        </form>
-        <br>
-
-        <table>
+    
             <?php 
             if(isset($_POST['search'])) {
+                echo "<table>";
                 echo "<h3>Search Results</h3>";
                 echo "<tr>
+                <th>Check</th>
                 <th>Fname</th>
                 <th>Lname</th>
                 <th>Date</th>
                 </tr>";
-                $search = "SELECT Patient.Fname, Patient.Lname, Appointments.Date FROM Patient Join Appointments WHERE Appointments.Pat_ID = Patient.Pat_ID AND Appointments.doc_id = {$_SESSION['empID']} AND Appointments.Date <= '{$_POST['typedate']}';";
+                $search = "SELECT Patient.Pat_ID,Patient.Fname, Patient.Lname, Appointments.Date FROM Patient Join Appointments WHERE Appointments.Pat_ID = Patient.Pat_ID AND Appointments.doc_id = {$_SESSION['empID']} AND Appointments.Date <= '{$_POST['typedate']}';";
                 $result = mysqli_query($conn, $search);;
                 if($result) {
+                    $_SESSION['patid'] = [];
                     while($row = mysqli_fetch_row($result)) {
-                        echo "<th>$row[0]</th>";
+                        $_SESSION['patid'][] = $row[0];
+                        echo "<tr id = 'please'>";
+                        echo "<th>
+                        <form method = 'POST' action = 'pat_doc.php'>
+                        <input name = 'please' type = 'submit' value = $row[0]></th>";
                         echo "<th>$row[1]</th>";
                         echo "<th>$row[2]</th>";
+                        echo "<th>$row[3]</th>";
                         echo "</tr>";
+                        echo "</form>";
                         }
                     }
+                    echo "</tr>
+                </table>";
                 }
     ?>
-            </tr>
-        </table>
+     
 
-        <!-- $search = "SELECT Patient.Fname, Patient.Lname, Appointments.Date FROM Patient Join Appointments WHERE Appointments.Pat_ID = Patient.Pat_ID AND Appointments.doc_id = {$_SESSION['empID']};";
-                $result = mysqli_query($conn, $search);;
-                if($result) {
-                    $row = mysqli_fetch_row($result);
-                    echo "<th>$row[0]</th>";
-                    echo "<th>$row[1]</th>";
-                    echo "<th>$row[2]</th>";
-                    echo "</tr>";
-                } -->
         <footer>
             <ul>
                 <li>Phone: 717-555-5555</li>

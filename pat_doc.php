@@ -37,16 +37,16 @@ if(isset($_GET['logout'])) {
             <li><a href="Roster.php">Roster</a></li>
         </ul>
 
-        <table>
         <?php 
-            echo "<tr>
+            echo "<table>
+            <tr>
             <th>Date</th>
             <th>Comment</th>
             <th>Morning Medicine</th>
             <th>Afternoon Medicine</th>
             <th>Night Medicine</th>
             </tr>";
-            $search = "SELECT Appointments.Date, Appointments.Comment, Appointments.Morning_Med, Appointments.Afternoon_Med, Appointments.Night_Med FROM Patient LEFT JOIN Appointments ON Appointments.Pat_ID = Patient.Pat_ID WHERE Appointments.doc_id = {$_SESSION['empID']};";
+            $search = "SELECT Appointments.Date, Appointments.Comment, Appointments.Morning_Med, Appointments.Afternoon_Med, Appointments.Night_Med FROM Patient LEFT JOIN Appointments ON Appointments.Pat_ID = Patient.Pat_ID WHERE Patient.Pat_ID = {$_POST["please"]} AND Appointments.doc_id = {$_SESSION['empID']};";
             $result = mysqli_query($conn, $search);;
             if($result) {
                 while($row = mysqli_fetch_row($result)) {
@@ -58,8 +58,9 @@ if(isset($_GET['logout'])) {
                     echo "</tr>";
                 }
             }
+           echo '</table>';
     ?>
-        </table>
+        
 
         <label>New Perscription</label>
 
@@ -69,6 +70,12 @@ if(isset($_GET['logout'])) {
                 <th>Morning Medicine</th>
                 <th>Afternoon Medicine</th>
                 <th>Night Medicine</th>
+            </tr>
+            <tr>
+                <th><input type="text"></th>
+                <th><input type="text"></th>
+                <th><input type="text"></th>
+                <th><input type="text"></th>
             </tr>
         </table>
 
