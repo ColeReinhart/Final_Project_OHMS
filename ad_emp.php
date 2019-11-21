@@ -14,6 +14,14 @@ if(isset($_GET['logout'])) {
     $_SESSION['role'] = NULL;
     header("location: index.php");
 }
+
+if(isset($_GET['emp_id'])){
+    $salary = $_GET['salary'];
+    $emp = $_GET['emp'];
+    $sql = "UPDATE `Employee` SET `Salary` = '$salary' WHERE `Emp_ID` = '$emp'";
+    $result = mysqli_query($conn,$sql);
+
+}
 ?>
 <html>
 <link href="style.css" rel="stylesheet" type="text/css">
@@ -33,7 +41,19 @@ if(isset($_GET['logout'])) {
             <li><a href="ad_report.php">Admin's Report</a></li>
             <li><a href="payment.php">Payment</a></li>
         </ul>
+        <form action="ad_emp.php" style="Float: left;">
+        <label>Employee ID</label>
+        <input name="emp"type="number">
 
+    
+        <br>
+
+        <label>New Salary</label>
+        <input name="salary" type="number" >
+        <br>
+        <input name="emp_id" type="submit">
+        <button>CANCEL</button>
+        </form>
         <table>
             <tr>
                 <th>ID</th>
@@ -41,18 +61,25 @@ if(isset($_GET['logout'])) {
                 <th>Role</th>
                 <th>Salary</th>
             </tr>
+            <?php
+            $sql = "SELECT Emp_ID, Fname, Lname, Salary FROM Employee";
+            $result = mysqli_query($conn, $sql);
+            if($result) {
+                while($row = mysqli_fetch_row($result)) {
+                    echo "<th>$row[0]</th>";
+                    echo "<th>$row[1]</th>";
+                    echo "<th>$row[2]</th>";
+                    echo "<th>$row[3]</th>";
+
+                    echo "</tr>";
+                }
+            }
+        
+        ?>
         </table>
 
-        <label>Employee ID</label>
-        <input type="text" >
-        <br>
 
-        <label>New Salary</label>
-        <input type="text" >
-        <br>
 
-        <button>OKAY</button>
-        <button>CANCEL</button>
 
         <footer>
             <ul>
