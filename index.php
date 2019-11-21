@@ -29,7 +29,7 @@ if(isset($_GET['login'])) {
           case 'Supervisor':
             $_SESSION['loggedIn'] == true;
             $_SESSION['empID'] = $row[9];
-            header( 'Location: supervisor.php');
+            header( 'Location: roster.php');
             break;
           }
         }
