@@ -55,7 +55,14 @@ if(isset($_GET['login'])) {
 ?>
 
 <html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="style.css" rel="stylesheet" type="text/css">
+
+    <title>Old Farts and Darts</title>
+</head>
     <h1>Welcome to Old Farts and Darts</h1>
 
     <button class="open-button" onclick="openForm()" name="login" id="login" value="Login">Login</button>

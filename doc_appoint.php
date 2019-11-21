@@ -38,7 +38,14 @@ if( $Date != "" & $Pat_ID != "" & $Doc_ID != ""){
 ?>
 
 <html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="style.css" rel="stylesheet" type="text/css">
+
+    <title>Doctors Appointment</title>
+</head>
     <body>
         <form action="" class = "logout">
             <button type="submit" class="btn" name = "logout">Logout</button>
@@ -48,7 +55,7 @@ if( $Date != "" & $Pat_ID != "" & $Doc_ID != ""){
         <ul>
             <li><a href="doc_home.php">Home</a></li>
             <li><a class = 'on' href="doc_appoint.php">Doctors' Appointments</a></li>
-            <li><a href="pat_doc.php">Patients' of the Doctor</a></li>
+            <li><a href="roster.php">Roster</a></li>
         </ul>
 
         <form action="doc_appoint.php">
