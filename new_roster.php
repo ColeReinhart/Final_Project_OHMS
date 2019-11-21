@@ -10,11 +10,10 @@ if(($_SESSION['loggedIn'] = true) && ($_SESSION['role'] == "Supervisor") || $_SE
 }
 
 if(isset($_GET['logout'])) {
-    unset($_SESSION['logout']);
-    $_SESSION['role'] = NULL;
+    session_destroy();
     header("location: index.php");
-
 }
+
     if(isset($_GET['submit'])){
 
         $date = $_GET['date']; 

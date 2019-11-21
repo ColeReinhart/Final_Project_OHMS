@@ -10,8 +10,7 @@ if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == "Admin") {
 }
 
 if(isset($_GET['logout'])) {
-    unset($_SESSION['logout']);
-    $_SESSION['role'] = NULL;
+    session_destroy();
     header("location: index.php");
 }
 

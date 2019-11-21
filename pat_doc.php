@@ -19,10 +19,10 @@ if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == 'Doctor') {
 }
 
 if(isset($_GET['logout'])) {
-    unset($_SESSION['logout']);
-    $_SESSION['role'] = NULL;
+    session_destroy();
     header("location: index.php");
 }
+
 ?>
 
 <html>
