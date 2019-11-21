@@ -1,7 +1,6 @@
 <?php
 include_once 'db.php';
-?>
-<?php
+
 
 if(isset($_GET['submit'])){
     $role = $_GET['select']; 
