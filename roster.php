@@ -68,6 +68,10 @@ if(isset($_GET['Submit'])){
             <li><a href='ad_report.php'>Admin's Report</a></li>
             <li><a href='payment.php'>Payment</a></li></ul>"; 
             break;
+        case 'Supervisor':
+            echo "<ul><li><a class = 'on' href='roster.php'>Home</a></li>
+            <li><a href='new_roster.php'>New Roster</a></li></ul>"; 
+            break;
         }
       ?>
 

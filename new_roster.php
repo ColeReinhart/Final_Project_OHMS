@@ -48,7 +48,7 @@ if(isset($_GET['logout'])) {
         <h1>New Roster</h1>
 
         <ul>
-            <li><a href="supervisor.php">Home</a></li>
+            <li><a href="roster.php">Home</a></li>
             <li><a class = 'on' href="new_roster.php">New Roster</a></li>
         </ul>
 
