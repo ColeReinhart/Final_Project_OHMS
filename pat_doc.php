@@ -3,6 +3,16 @@ include_once 'db.php';
 
 session_start();
 
+if(isset($_POST['please'])) {
+    $_SESSION['anthony'] = $_POST["please"];
+    $id = $_SESSION['anthony'];
+}
+
+$col1 = $_GET['col1'] ?? '';
+$col2 = $_GET['col2'] ?? '';
+$col3 = $_GET['col3'] ?? '';
+$col4 = $_GET['col4'] ?? '';
+
 if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == 'Doctor') {
 } else {
     header("location: index.php");
@@ -33,8 +43,8 @@ if(isset($_GET['logout'])) {
         <ul>
             <li><a href="doc_home.php">Home</a></li>
             <li><a href="doc_appoint.php">Doctors' Appointments</a></li>
-            <li><a class = 'on' href="pat_doc.php">Patients' of the Doctor</a></li>
             <li><a href="Roster.php">Roster</a></li>
+            <li><a class = 'on' href="pat_doc.php">Patients' of the Doctor</a></li>
         </ul>
 
         <?php 
@@ -46,7 +56,7 @@ if(isset($_GET['logout'])) {
             <th>Afternoon Medicine</th>
             <th>Night Medicine</th>
             </tr>";
-            $search = "SELECT Appointments.Date, Appointments.Comment, Appointments.Morning_Med, Appointments.Afternoon_Med, Appointments.Night_Med FROM Patient LEFT JOIN Appointments ON Appointments.Pat_ID = Patient.Pat_ID WHERE Patient.Pat_ID = {$_POST["please"]} AND Appointments.doc_id = {$_SESSION['empID']};";
+            $search = "SELECT Appointments.Date, Appointments.Comment, Appointments.Morning_Med, Appointments.Afternoon_Med, Appointments.Night_Med FROM Patient LEFT JOIN Appointments ON Appointments.Pat_ID = Patient.Pat_ID WHERE Patient.Pat_ID = '{$_SESSION['anthony']}' AND Appointments.doc_id = {$_SESSION['empID']};";
             $result = mysqli_query($conn, $search);;
             if($result) {
                 while($row = mysqli_fetch_row($result)) {
@@ -64,20 +74,41 @@ if(isset($_GET['logout'])) {
 
         <label>New Perscription</label>
 
-        <table>
+        <?php
+        if(isset($_GET['update'])) {
+            $date = date("Y-m-d",time());
+            $search = "UPDATE Appointments 
+            SET Appointments.Comment = '{$_GET['col1']}', Appointments.Morning_Med = '{$_GET['col2']}', Appointments.Afternoon_Med = '{$_GET['col3']}', Appointments.Night_Med = '{$_GET['col4']}'
+            WHERE Appointments.Date = '$date' AND Appointments.Pat_ID = '{$_SESSION['anthony']}';";
+            $result = mysqli_query($conn, $search);;
+            if($result) {
+                    echo "<th>$row[0]</th>";
+                    echo "<th>$row[1]</th>";
+                    echo "<th>$row[2]</th>";
+                    echo "<th>$row[3]</th>";
+                    echo "</tr>";  
+                    header('Location: pat_doc.php');
+            }
+        }
+        echo "<table>
             <tr>
                 <th>Comment</th>
                 <th>Morning Medicine</th>
                 <th>Afternoon Medicine</th>
                 <th>Night Medicine</th>
+                <th>Update</th>
             </tr>
             <tr>
-                <th><input type="text"></th>
-                <th><input type="text"></th>
-                <th><input type="text"></th>
-                <th><input type="text"></th>
+                <form action='pat_doc.php' method='GET'>
+                    <th><input type='text' name = 'col1'></th>
+                    <th><input type='text' name = 'col2'></th>
+                    <th><input type='text' name = 'col3'></th>
+                    <th><input type='text' name = 'col4'></th>
+                    <th><input type='submit' value = 'Update' name = 'update'></th>
+                </form>
             </tr>
-        </table>
+        </table>";
+    ?>
 
         <footer>
             <ul>
