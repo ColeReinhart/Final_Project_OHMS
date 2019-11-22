@@ -20,6 +20,10 @@ h1, h2 {
     background: #9fa0a0;
 }
 
+input {
+    margin-top: 10px;
+}
+
 /* Login Button and Form */
 #login, #register {
     font: sans-serif;
@@ -83,6 +87,17 @@ input {
     text-align: center;
 }
 
+/* Back Button on Register */
+#back {
+    font-size: 35px;
+    border: none;
+    border-radius: 10%;
+    position: fixed;
+    opacity: 0.5;
+    transition-duration: 1s;
+    text-decoration: none;
+}
+
 /* Logout Button */
 .logout .btn {
     font-size: 35px;
@@ -93,6 +108,10 @@ input {
     position: fixed;
     opacity: 0.5;
     transition-duration: 1s;
+}
+
+#back:hover {
+    opacity: 1;
 }
 
 .logout .btn:hover {
@@ -114,21 +133,16 @@ td, th {
 
 /* Register Page */
 .input_space {
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
-.float_right {
-    float: right;
+.reg {
+    display: flex;
 }
 
-.float_left {
-    float: left;
-}
-
-#button {
-    position: relative;
-    top: 400px;
-    float: right;
+.column {
+    flex: 50%;
+    padding: 10px;
 }
 
 #patient {
@@ -169,7 +183,7 @@ ul {
     margin-bottom: 15px;
   }
 
-footer {
+  footer {
     font-size: 30px;
     color: #fcfcdb;
     width: 100%;

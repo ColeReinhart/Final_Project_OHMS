@@ -1,6 +1,7 @@
 <?php
 include_once 'db.php';
 
+echo "<a id = 'back' href = 'index.php'>⬅️</a>";
 
 if(isset($_GET['submit'])){
     $role = $_GET['select']; 
@@ -69,8 +70,8 @@ elseif($role == "Family_Member" & $fname != "" & $lname != "" & $email != "" & $
     <h1>Welcome to Old Farts and Darts</h1>
 
     <h2>Register</h2>
-    <form action="register.php">
-    <div class="float_left">
+    <form action="register.php" class = 'reg'>
+    <div class="column">
         <label for="Role">Role</label>
         <select name="select" class="input_space" onchange="isPatient(this)">
             <option> Choose Role </option>
@@ -86,20 +87,20 @@ elseif($role == "Family_Member" & $fname != "" & $lname != "" & $email != "" & $
         <label for="Lname">Last Name</label><input class="input_space" type="text" name="Lname"><br>
         <label for="Email">Email</label><input class="input_space" type="email" name="Email"><br>
     </div>
-        <div class="float_right input_space">
+        <div class=" column float_right input_space">
 
         <label for="Phone" class="input_space">Phone Format: ex: 000-0000</label><input class="input_space" type="tel" name="Phone" pattern="[[0-9]{3}-[0-9]{4}"><br>
         <label for="Password" class="input_space">Password</label><input class="input_space" type="password" name="Password"><br>
         <label for="Birth" class="input_space">Date Of Birth</label><input class="input_space" type="date" name="Birth"><br>
         <div id="family" style="display: none;">
-        <label for="patient">Family Code (For Patient Family Member)</label> <input type="text" id="family" class="family" name="Code" /><br />
+        <label for="patient">Family Code (For Patient Family Member)</label> <input class = "input_space" type="text" id="family" class="family" name="Code" /><br />
         </div>
         <div id="patient" style="display: none;">
-    <label for="Contact">Emergency Contact</label> <input type="text" id="patient" name="Contact" /><br />
-    <label for="Relation">Relation to Emergency Contact</label> <input type="text" id="patient" name="Relation" /><br />
+    <label for="Contact">Emergency Contact</label> <input class = "input_space" type="text" id="patient" name="Contact" /><br />
+    <label for="Relation">Relation to Emergency Contact</label> <input class = "input_space" type="text" id="patient" name="Relation" /><br />
         </div>
 
-    </div>
+    <!-- </div> -->
         <input id="button" type="submit" name="submit" value="Enter">
 
     </form>
