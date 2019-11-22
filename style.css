@@ -2,11 +2,14 @@ html {
     margin-left: 5%;
     margin-right: 5%;
     background: #9fa0a0;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
     background: #fcfcdb;
-    
+    margin: 0 0 100px;
+    padding-bottom: 50px;
 }
 
 h1, h2 {
@@ -41,6 +44,12 @@ h1, h2 {
     margin-left: 15%;
     background-color: #9fa0a0;
     color: #fcfcdb;
+}
+
+input {
+    background: #f1f1f1;
+    border: none;
+    font-size: 20px;
 }
 
 .form-container input[type=text], .form-container input[type=password] {
@@ -157,9 +166,16 @@ ul {
   }
 
   footer ul {
+    margin-bottom: 15px;
+  }
+
+footer {
     font-size: 30px;
     color: #fcfcdb;
+    width: 100%;
     position: absolute;
+    left: 0;
     bottom: 0;
-    width: 90%;
-  }
+    width: 100%;
+    overflow: hidden;
+}

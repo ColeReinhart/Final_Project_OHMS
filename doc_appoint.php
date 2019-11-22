@@ -83,8 +83,8 @@ if( $Date != "" & $Pat_ID != "" & $Doc_ID != ""){
             <br>
             <input type="hidden" name="Pat_ID" type="number" value="<?php if(isset($pat)){echo $pat; } ?>">
 
-            <input type="submit" name="submit">OKAY</input>
-            <button>CANCEL</button>
+            <input type="submit" name="submit" value="Submit">
+            <input type="submit" name="submit" value="CANCEL">
         </form>
 
         <footer>

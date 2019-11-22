@@ -42,8 +42,8 @@ if(isset($_GET['logout'])) {
         <?php echo 'Date Goes Here'?>
         <br>
 
-        <button>OKAY</button>
-        <button>CANCEL</button>
+        <input type="submit" name="submit" value="OKAY">
+        <input type="submit" name="submit" value="CANCEL">
 
         <table>
             <tr>

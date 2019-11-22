@@ -124,7 +124,7 @@ if(isset($_GET['logout'])) {
         <br>
 
         <input type="submit" name="submit" value='OKAY'>
-        <button>CANCEL</button>
+        <input type="submit" name="submit" value='CANCEL'>
             </form>
         <footer>
             <ul>

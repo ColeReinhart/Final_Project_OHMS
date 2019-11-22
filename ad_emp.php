@@ -58,7 +58,7 @@ if(isset($_GET['emp_id'])){
         <input name="salary" type="number" >
         <br>
         <input name="emp_id" type="submit">
-        <button>CANCEL</button>
+        <input name="emp_id" type="submit" value="CANCEL">
         </form>
         <table>
             <tr>
