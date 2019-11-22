@@ -47,37 +47,72 @@ if(isset($_GET['logout'])) {
                 <th>Name</th>
                 <th>Age</th>
                 <th>Emergency Contact</th>
-                <th>Emergency Contact Name</th>
                 <th>Admission Date</th>
             </tr>
-        </table>
+            <?php
 
+            if(isset($_GET['search_submit'])){
+                $column = $_GET['column'];
+                $search_box = $_GET['search_box'];
+                $sql = "SELECT Pat_ID, Fname, Lname, DoB, Emergency_Contact, Admission_Date FROM Patient WHERE `$column` = '$search_box' ";
+            $result = mysqli_query($conn, $sql);
+            if($result) {
+                while($row = mysqli_fetch_row($result)) {
+                    echo "<th>$row[0]</th>";
+                    echo "<th>$row[1] $row[2]</th>";
+                    echo "<th>$row[3]</th>";
+                    echo "<th>$row[4]</th>";
+                    echo "<th>$row[5]</th>";
+
+                    echo "</tr>";
+            }
+        }
+    }
+             
+
+
+            
+        
+        ?>
+        </table>
+        <?php
+        echo "<table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Emergency Contact</th>
+            <th>Admission Date</th>
+        </tr>";
+        $sql = "SELECT Pat_ID, Fname, Lname, DoB, Emergency_Contact, Admission_Date FROM Patient";
+            $result = mysqli_query($conn, $sql);
+            if($result) {
+                while($row = mysqli_fetch_row($result)) {
+                    echo "<th>$row[0]</th>";
+                    echo "<th>$row[1] $row[2]</th>";
+                    echo "<th>$row[3]</th>";
+                    echo "<th>$row[4]</th>";
+                    echo "<th>$row[5]</th>";
+
+                    echo "</tr>";
+                }
+                }
+            ?>
         <h3>Search</h3>
 
-        <label>ID</label>
-        <input type="text">
-        <br>
+        <form action="ad_pat.php">
+        <select name="column" class="input_space">
+            <option value="Pat_ID"> ID </option>
+            <option value="Fname"> First Name </option>
+            <option value="Lname"> Last Name </option>
+            <option value="DoB"> Date-Of-Birth </option>
+            <option value="Emergency_Contact"> Emergency Contact </option>
+            <option value="Admission_Date"> Admission Date </option>
+        </select>
 
-        <label>Name</label>
-        <input type="text">
-        <br>
-
-        <label>Age</label>
-        <input type="text">
-        <br>
-
-        <label>Emergency Contact</label>
-        <input type="text">
-        <br>
-
-        <label>Emergency Contact Name</label>
-        <input type="text">
-        <br>
-
-        <label>Addmission Date</label>
-        <input type="text">
-        <br>
-
+        <input name="search_box" type="text">
+        <input type="submit" name="search_submit">
+        </form>
         <footer>
             <ul>
                 <li>Phone: 717-555-5555</li>

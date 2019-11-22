@@ -96,11 +96,11 @@ elseif($role == "Family_Member" & $fname != "" & $lname != "" & $email != "" & $
         <label for="patient">Family Code (For Patient Family Member)</label> <input class = "input_space" type="text" id="family" class="family" name="Code" /><br />
         </div>
         <div id="patient" style="display: none;">
-    <label for="Contact">Emergency Contact</label> <input class = "input_space" type="text" id="patient" name="Contact" /><br />
-    <label for="Relation">Relation to Emergency Contact</label> <input class = "input_space" type="text" id="patient" name="Relation" /><br />
+
+    <label for="Contact">Emergency Contact Phone Number Format: ex: 000-0000</label> <input type="text" id="patient" name="Contact" pattern="[[0-9]{3}-[0-9]{4}" /><br />
+    <label for="Relation">Relation to Emergency Contact</label> <input type="text" id="patient" name="Relation" /><br />
         </div>
 
-    <!-- </div> -->
         <input id="button" type="submit" name="submit" value="Enter">
 
     </form>
