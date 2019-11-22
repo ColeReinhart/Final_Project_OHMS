@@ -10,10 +10,10 @@ if(($_SESSION['loggedIn'] = true) && ($_SESSION['role'] == "Family_Mem")|| $_SES
 }
 
 if(isset($_GET['logout'])) {
-    unset($_SESSION['logout']);
-    $_SESSION['role'] = NULL;
+    session_destroy();
     header("location: index.php");
 }
+
 ?>
 <html>
 <head>
@@ -42,8 +42,8 @@ if(isset($_GET['logout'])) {
         <?php echo 'Date Goes Here'?>
         <br>
 
-        <button>OKAY</button>
-        <button>CANCEL</button>
+        <input type="submit" name="submit" value="OKAY">
+        <input type="submit" name="submit" value="CANCEL">
 
         <table>
             <tr>

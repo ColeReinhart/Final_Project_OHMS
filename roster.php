@@ -9,8 +9,7 @@ if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == "Caregiver" || $_SESSI
 }
 
 if(isset($_GET['logout'])) {
-    unset($_SESSION['logout']);
-    $_SESSION['role'] = NULL;
+    session_destroy();
     header("location: index.php");
 }
 
@@ -67,6 +66,10 @@ if(isset($_GET['Submit'])){
             <li><a class='on' href='roster.php'>Roster</a></li>
             <li><a href='ad_report.php'>Admin's Report</a></li>
             <li><a href='payment.php'>Payment</a></li></ul>"; 
+            break;
+        case 'Supervisor':
+            echo "<ul><li><a class = 'on' href='roster.php'>Home</a></li>
+            <li><a href='new_roster.php'>New Roster</a></li></ul>"; 
             break;
         }
       ?>

@@ -10,11 +10,10 @@ if(($_SESSION['loggedIn'] = true) && ($_SESSION['role'] == "Supervisor") || $_SE
 }
 
 if(isset($_GET['logout'])) {
-    unset($_SESSION['logout']);
-    $_SESSION['role'] = NULL;
+    session_destroy();
     header("location: index.php");
-
 }
+
     if(isset($_GET['submit'])){
 
         $date = $_GET['date']; 
@@ -48,7 +47,7 @@ if(isset($_GET['logout'])) {
         <h1>New Roster</h1>
 
         <ul>
-            <li><a href="supervisor.php">Home</a></li>
+            <li><a href="roster.php">Home</a></li>
             <li><a class = 'on' href="new_roster.php">New Roster</a></li>
         </ul>
 
@@ -125,7 +124,7 @@ if(isset($_GET['logout'])) {
         <br>
 
         <input type="submit" name="submit" value='OKAY'>
-        <button>CANCEL</button>
+        <input type="submit" name="submit" value='CANCEL'>
             </form>
         <footer>
             <ul>
