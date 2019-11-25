@@ -20,6 +20,12 @@ h1, h2 {
     background: #9fa0a0;
 }
 
+h3 {
+    font-size: 20px;
+    text-align: center;
+    color:  #9fa0a0;
+}
+
 input {
     margin-top: 10px;
 }
