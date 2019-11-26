@@ -4,50 +4,56 @@ include_once 'db.php';
 session_start();
 
 if(isset($_GET['login'])) {
-  $search = "SELECT Employee.Email, Employee.Password, Employee.Role, Patient.Email, Patient.Password, Patient.Role, FAMILY_MEMBER.Email, FAMILY_MEMBER.Password, FAMILY_MEMBER.Role, Employee.Emp_ID, Patient.Pat_ID, FAMILY_MEMBER.FAM_ID FROM Employee, Patient, FAMILY_MEMBER;";
+  $search = "SELECT Employee.Email, Employee.Password, Employee.Role, Patient.Email, Patient.Password, Patient.Role, FAMILY_MEMBER.Email, FAMILY_MEMBER.Password, FAMILY_MEMBER.Role, Employee.Emp_ID, Patient.Pat_ID, FAMILY_MEMBER.FAM_ID, Employee.Approved, Patient.Approved, FAMILY_MEMBER.Approved FROM Employee, Patient, FAMILY_MEMBER;";
   $result = mysqli_query($conn, $search);
   while($row = mysqli_fetch_row($result)) {
-    if ($row[0] == $_GET['email'] ?? '') {
-      if ($row[1] == $_GET['psw'] ?? ''){
-        $_SESSION['role'] = $row[2];
-        switch ($_SESSION['role']) {
-          case 'Doctor':
-            $_SESSION['loggedIn'] = true;
-            $_SESSION['empID'] = $row[9];
-            header( 'Location: doc_home.php');
-            break;
-          case 'Caregiver':
-            $_SESSION['loggedIn'] == true;
-            $_SESSION['empID'] = $row[9];
-            header( 'Location: caregiver.php');
-            break;
-          case 'Admin':
-            $_SESSION['loggedIn'] == true;
-            $_SESSION['empID'] = $row[9];
-            header( 'Location: admin.php');
-            break;
-          case 'Supervisor':
-            $_SESSION['loggedIn'] == true;
-            $_SESSION['empID'] = $row[9];
-            header( 'Location: roster.php');
-            break;
+    if ($row[12] == 1) {
+      if ($row[0] == $_GET['email'] ?? '') {
+        if ($row[1] == $_GET['psw'] ?? ''){
+          $_SESSION['role'] = $row[2];
+          switch ($_SESSION['role']) {
+            case 'Doctor':
+              $_SESSION['loggedIn'] = true;
+              $_SESSION['empID'] = $row[9];
+              header( 'Location: doc_home.php');
+              break;
+            case 'Caregiver':
+              $_SESSION['loggedIn'] == true;
+              $_SESSION['empID'] = $row[9];
+              header( 'Location: caregiver.php');
+              break;
+            case 'Admin':
+              $_SESSION['loggedIn'] == true;
+              $_SESSION['empID'] = $row[9];
+              header( 'Location: admin.php');
+              break;
+            case 'Supervisor':
+              $_SESSION['loggedIn'] == true;
+              $_SESSION['empID'] = $row[9];
+              header( 'Location: roster.php');
+              break;
+            }
           }
         }
-      }
-      if ($row[3] == $_GET['email'] ?? '') {
-        if ($row[4] == $_GET['psw'] ?? ''){
-          $_SESSION['loggedIn'] == true;
-          $_SESSION['role'] = $row[5];
-          $_SESSION['patID'] = $row[10];
-          header( 'Location: patient.php');
+        if ($row[13] == 1) {
+          if ($row[3] == $_GET['email'] ?? '') {
+            if ($row[4] == $_GET['psw'] ?? ''){
+              $_SESSION['loggedIn'] == true;
+              $_SESSION['role'] = $row[5];
+              $_SESSION['patID'] = $row[10];
+              header( 'Location: patient.php');
+            }
+          }
         }
-      }
-      if ($row[6] == $_GET['email'] ?? '') {
-        if ($row[7] == $_GET['psw'] ?? ''){
-          $_SESSION['loggedIn'] == true;
-          $_SESSION['role'] = $row[8];
-          $_SESSION['famID'] = $row[11];
-          header( 'Location: fam_member.php');
+        if ($row[13] == 1) {
+          if ($row[6] == $_GET['email'] ?? '') {
+            if ($row[7] == $_GET['psw'] ?? ''){
+              $_SESSION['loggedIn'] == true;
+              $_SESSION['role'] = $row[8];
+              $_SESSION['famID'] = $row[11];
+              header( 'Location: fam_member.php');
+            }
+          }
         }
       }
     }
