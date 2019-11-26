@@ -17,6 +17,12 @@ if($role == "Patient" & $fname != "" & $lname != "" & $email != "" & $phone != "
 & $password != "" & $birth != "" & $relation != "" & $contact != "" & $code != ""){
     $sql = "INSERT INTO `Patient`(Fname, Lname, Phone, Email, Password, DoB, Family_Code, Emergency_Contact, Relation_to_Emergency_Contact, Role) VALUES ('$fname','$lname','$phone','$email','$password','$birth','$code','$contact','$relation','$role')";
     mysqli_query($conn,$sql);
+    $sql_search = "SELECT Pat_ID FROM Patient WHERE Email = '$email'";
+    $result_search = mysqli_query($conn,$sql_search);
+    $row_id = mysqli_fetch_row($result_search);
+    $sql_care = "INSERT INTO   `Caregiver` (Pat_ID, Morning_Med, Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner) Values ('$row_id[0]',0,0,0,0,0,0)";
+    mysqli_query($conn,$sql_care);
+
     header("Location:index.php");
 }
 elseif(($role == "Doctor" or $role == "Caregiver" or $role == "Supervisor" or $role == "Admin") & $fname != "" & $lname != "" & $email != "" & $phone != ""
