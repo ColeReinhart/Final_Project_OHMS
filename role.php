@@ -14,6 +14,23 @@ if(isset($_GET['logout'])) {
     header("location: index.php");
 }
 
+if(isset($_GET['role_sub'])){
+    $role_name = $_GET['role_name'];
+    $access = $_GET['access'];
+
+    $sql="SELECT * FROM `Role` WHERE `Role` = '$role_name'";
+   $result = mysqli_query($conn,$sql);
+   if(mysqli_num_rows($result) != "int(0)"){
+       $update_access = "UPDATE `Role` SET `Access_Level` = $access WHERE Role = '$role_name'";
+       mysqli_query($conn,$update_access);
+   }
+
+   else{
+        $insert = "INSERT INTO `Role` (Role, Access_Level) VALUES ('$role_name',$access)";
+        mysqli_query($conn,$insert);
+   }
+}
+
 ?>
 <html>
 <head>
@@ -41,23 +58,40 @@ if(isset($_GET['logout'])) {
             <li><a href="payment.php">Payment</a></li>
         </ul>
 
+                
+        <form>
+        <label>Role</label>
+        <input type="text" name="role_name">
+        <br>
+        <label> Access Level</label>
+        <input type="text" name="access">
+        <input type="submit" name="role_sub">
+
+        </form>
+
         <table>
             <tr>
                 <th>Role</th>
                 <th>Access Level</th>
             </tr>
-            <tr>
-                <td>Name</td>
-                <td>Number</td>
-            </tr>
+            <?php
+            $sql = "SELECT Role, Access_Level FROM Role ORDER BY Access_Level ASC";
+            $result = mysqli_query($conn, $sql);
+            if($result) {
+                while($row = mysqli_fetch_row($result)) {
+                    echo "<th>$row[0]</th>";
+                    echo "<th>$row[1]</th>";
+
+                    echo "</tr>";
+                }
+            }
+            ?>
         </table>
 
-        <label>New Role</label>
-        <input type="text">
+
         <br>
 
-        <label> Access Level</label>
-        <input type="text">
+
 
         <footer>
             <ul>

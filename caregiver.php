@@ -13,14 +13,152 @@ if(($_SESSION['loggedIn'] = true) && ($_SESSION['role'] == "Caregiver") || $_SES
 if(isset($_GET['logout'])) {
     session_destroy();
     header("location: index.php");
-
 }
 
-if(isset($_GET['morning'])){
-    $Pat_id = $row1[9];
-    echo $Pat_id;
-    $sql_morning = "UPDATE `Caregiver` SET `Morning_Med` = 1 WHERE `Pat_ID` = $Pat_id";
-    mysqli_query($conn, $sql_morning);
+
+if(isset($_GET['morning'])) {
+    $_SESSION['morning'] = $_GET["morning"];
+}
+
+$_SESSION['now'] = date("Y-m-d",time());
+
+if(isset($_SESSION['morning'])){
+    if ($_SESSION['now'] == $_SESSION['date']) {
+        $yup = "SELECT Morning_Med FROM Caregiver WHERE `Pat_ID` = {$_SESSION['morning']};";
+        $result = mysqli_query($conn, $yup);
+        if($result) {
+            $row = mysqli_fetch_row($result);
+            if ($row[0] == 0) {
+                $sql_morning = "UPDATE `Caregiver` SET `Morning_Med` = 1 WHERE `Pat_ID` = {$_SESSION['morning']}";
+                mysqli_query($conn, $sql_morning);
+                unset($_SESSION['morning']);
+            } else {
+                $sql_morning = "UPDATE `Caregiver` SET `Morning_Med` = 0 WHERE `Pat_ID` = {$_SESSION['morning']}";
+                mysqli_query($conn, $sql_morning);
+                unset($_SESSION['morning']);
+            }
+        }
+    }
+}
+
+if(isset($_GET['afternoon'])) {
+    $_SESSION['afternoon'] = $_GET["afternoon"];
+}
+
+if(isset($_SESSION['afternoon'])) {
+    if ($_SESSION['now'] == $_SESSION['date']) {
+        $yup2 = "SELECT Afternoon_Med FROM Caregiver WHERE `Pat_ID` = {$_SESSION['afternoon']};";
+        $result2 = mysqli_query($conn, $yup2);
+        if($result2) {
+            $row2 = mysqli_fetch_row($result2);
+            if ($row2[0] == 0) {
+                $sql_afternoon = "UPDATE `Caregiver` SET `Afternoon_Med` = 1 WHERE `Pat_ID` = {$_SESSION['afternoon']}";
+                mysqli_query($conn, $sql_afternoon);
+                unset($_SESSION['afternoon']);
+            } else {
+                $sql_afternoon = "UPDATE `Caregiver` SET `Afternoon_Med` = 0 WHERE `Pat_ID` = {$_SESSION['afternoon']}";
+                mysqli_query($conn, $sql_afternoon);
+                unset($_SESSION['afternoon']);
+            }
+        }
+    }
+}
+
+if(isset($_GET['night'])) {
+    $_SESSION['night'] = $_GET["night"];
+}
+
+if(isset($_SESSION['night'])){
+    if ($_SESSION['now'] == $_SESSION['date']) {
+        $yup3 = "SELECT Night_Med FROM Caregiver WHERE `Pat_ID` = {$_SESSION['night']};";
+        $result3 = mysqli_query($conn, $yup3);
+        if($result3) {
+            $row3 = mysqli_fetch_row($result3);
+            if ($row3[0] == 0) {
+                $sql_night = "UPDATE `Caregiver` SET `Night_Med` = 1 WHERE `Pat_ID` = {$_SESSION['night']}";
+                mysqli_query($conn, $sql_night);
+                unset($_SESSION['night']);
+            } else {
+                $sql_night = "UPDATE `Caregiver` SET `Night_Med` = 0 WHERE `Pat_ID` = {$_SESSION['night']}";
+                mysqli_query($conn, $sql_night);
+                unset($_SESSION['night']);
+            }
+        }
+    }
+}
+
+if(isset($_GET['breakfast'])) {
+    $_SESSION['breakfast'] = $_GET["breakfast"];
+}
+
+if(isset($_SESSION['breakfast'])){
+    if ($_SESSION['now'] == $_SESSION['date']) {
+        $yup4 = "SELECT Breakfast FROM Caregiver WHERE `Pat_ID` = {$_SESSION['breakfast']};";
+        $result4 = mysqli_query($conn, $yup4);
+        if($result4) {
+            $row4 = mysqli_fetch_row($result4);
+            if ($row4[0] == 0) {
+                $sql_breakfast = "UPDATE `Caregiver` SET `Breakfast` = 1 WHERE `Pat_ID` = {$_SESSION['breakfast']}";
+                mysqli_query($conn, $sql_breakfast);
+                unset($_SESSION['breakfast']);
+            } else {
+                $sql_breakfast = "UPDATE `Caregiver` SET `Breakfast` = 0 WHERE `Pat_ID` = {$_SESSION['breakfast']}";
+                mysqli_query($conn, $sql_breakfast);
+                unset($_SESSION['breakfast']);
+            }
+        }
+    }
+}
+
+if(isset($_GET['lunch'])) {
+    $_SESSION['lunch'] = $_GET["lunch"];
+}
+
+if(isset($_SESSION['lunch'])){
+    if ($_SESSION['now'] == $_SESSION['date']) {
+        $yup5 = "SELECT Lunch FROM Caregiver WHERE `Pat_ID` = {$_SESSION['lunch']};";
+        $result5 = mysqli_query($conn, $yup5);
+        if($result5) {
+            $row5 = mysqli_fetch_row($result5);
+            if ($row5[0] == 0) {
+                $sql_lunch = "UPDATE `Caregiver` SET `Lunch` = 1 WHERE `Pat_ID` = {$_SESSION['lunch']}";
+                mysqli_query($conn, $sql_lunch);
+                unset($_SESSION['lunch']);
+            } else {
+                $sql_lunch = "UPDATE `Caregiver` SET `Lunch` = 0 WHERE `Pat_ID` = {$_SESSION['lunch']}";
+                mysqli_query($conn, $sql_lunch);
+                unset($_SESSION['lunch']);
+            }
+        }
+    }
+}
+
+if(isset($_GET['dinner'])) {
+    $_SESSION['dinner'] = $_GET["dinner"];
+}
+
+if(isset($_SESSION['dinner'])){
+    if ($_SESSION['now'] == $_SESSION['date']) {
+        $yup6 = "SELECT Dinner FROM Caregiver WHERE `Pat_ID` = {$_SESSION['dinner']};";
+        $result6 = mysqli_query($conn, $yup6);
+        if($result6) {
+            $row6 = mysqli_fetch_row($result6);
+            if ($row6[0] == 0) {
+                $sql_dinner = "UPDATE `Caregiver` SET `Dinner` = 1 WHERE `Pat_ID` = {$_SESSION['dinner']}";
+                mysqli_query($conn, $sql_dinner);
+                unset($_SESSION['dinner']);
+            } else {
+                $sql_dinner = "UPDATE `Caregiver` SET `Dinner` = 0 WHERE `Pat_ID` = {$_SESSION['dinner']}";
+                mysqli_query($conn, $sql_dinner);
+                unset($_SESSION['dinner']);
+            }
+        }
+    }
+}
+
+
+if(isset($_GET['Date'])) {
+    $_SESSION['date'] = $_GET["Date"];
 }
 
 ?>
@@ -44,17 +182,15 @@ if(isset($_GET['morning'])){
             <li><a href="roster.php">Roster</a></li>
         </ul>
 
-        <label>List of Patient Duties:</label>
-        <?php echo 'All the Duties Go Here'?> 
         <br>
         <form>
         <label>Date:</label>
         <?php
             $time = date("Y-m-d",time());
 
-        echo"<input name='Date' type='date' value='$time'>";
+        echo"<input name='Date' type='date' value='$time' readonly>";
         ?>
-        <input name="sub_date" type="submit">
+        <input name="sub_date" type="submit" value = "Submit">
 </form>
 <form>
         <table>
@@ -71,233 +207,238 @@ if(isset($_GET['morning'])){
                 <?php
                 
                 // Add reset day button
-            if(isset($_GET["sub_date"])){
-            $Date = $_GET['Date'] ?? date("Y-m-d",time());
-            $sequel1 = "SELECT Group1_id FROM Roster WHERE Roster.Schedule_Date = '$Date'";
-            $result1 = mysqli_query($conn, $sequel1);
-            $row1 = mysqli_fetch_row($result1);
-            $sequel2 = "SELECT Group2_id FROM Roster WHERE Roster.Schedule_Date = '$Date'";
-            $result2 = mysqli_query($conn, $sequel2);
-            $row2 = mysqli_fetch_row($result2);
-            $sequel3 = "SELECT Group3_id FROM Roster WHERE Roster.Schedule_Date = '$Date'";
-            $result3 = mysqli_query($conn, $sequel3);
-            $row3 = mysqli_fetch_row($result3);
-            $sequel4 = "SELECT Group4_id FROM Roster WHERE Roster.Schedule_Date = '$Date'";
-            $result4 = mysqli_query($conn, $sequel4);
-            $row4 = mysqli_fetch_row($result4);
-                        if($row1[0] == (" $id ") ){
-                $sql1 = "SELECT  Fname, Lname,Morning_Med,Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner, `Group`, Patient.Pat_ID FROM Caregiver JOIN  Patient ON Patient.Pat_ID = Caregiver.Pat_ID WHERE `Group` = 'A' ";
-            $res_1 = mysqli_query($conn, $sql1);
-            if($res_1) {
-                while($row1 = mysqli_fetch_row($res_1)) {
-                    if($row1[2] == 1){
-                        $r1 = "Completed";
+            if(isset($_SESSION['date'])){
+                echo "<h3>{$_SESSION['date']}</h3>";
+                $Date = $_SESSION['date'] ?? date("Y-m-d",time());
+                $sequel1 = "SELECT Group1_id FROM Roster WHERE Roster.Schedule_Date = '$Date'";
+                $result1 = mysqli_query($conn, $sequel1);
+                $row1 = mysqli_fetch_row($result1);
+                $sequel2 = "SELECT Group2_id FROM Roster WHERE Roster.Schedule_Date = '$Date'";
+                $result2 = mysqli_query($conn, $sequel2);
+                $row2 = mysqli_fetch_row($result2);
+                $sequel3 = "SELECT Group3_id FROM Roster WHERE Roster.Schedule_Date = '$Date'";
+                $result3 = mysqli_query($conn, $sequel3);
+                $row3 = mysqli_fetch_row($result3);
+                $sequel4 = "SELECT Group4_id FROM Roster WHERE Roster.Schedule_Date = '$Date'";
+                $result4 = mysqli_query($conn, $sequel4);
+                $row4 = mysqli_fetch_row($result4);
+                            if($row1[0] == (" $id ") ){
+                            $sql1 = "SELECT  Fname, Lname,Morning_Med,Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner, `Group`, Patient.Pat_ID FROM Caregiver JOIN  Patient ON Patient.Pat_ID = Caregiver.Pat_ID WHERE `Group` = 'A' ";
+                $res_1 = mysqli_query($conn, $sql1);
+                if($res_1) {
+                    while($row1 = mysqli_fetch_row($res_1)) {
+                        if($row1[2] == 1){
+                            $r1 = "✔";
+                        }
+                        else{
+                            $r1 = "✘";
+                        }
+                        if($row1[3] == 1){
+                            $r2 = "✔";
+                        }
+                        else{
+                            $r2 = "✘";
+                        }
+                        if($row1[4] == 1){
+                            $r3 = "✔";
+                        }
+                        else{
+                            $r3 = "✘";
+                        }
+                        if($row1[5] == 1){
+                            $r4 = "✔";
+                        }
+                        else{
+                            $r4 = "✘";
+                        }
+                        if($row1[6] == 1){
+                            $r5 = "✔";
+                        }
+                        else{
+                            $r5 = "✘";
+                        }
+                        if($row1[7] == 1){
+                            $r6 = "✔";
+                        }
+                        else{
+                            $r6 = "✘";
+                        }
+                        echo"<td>$row1[0] $row1[1]</td>
+                        <td><form><input value='$row1[9]' name='morning' type='submit'>$r1</form></td>
+                        <td><form><input value='$row1[9]' name='afternoon'type='submit'>$r2</form></td>
+                        <td><form><input value='$row1[9]' name='night'type='submit'>$r3</form></td>
+                        <td><form><input value='$row1[9]' name='breakfast'type='submit'>$r4</form></td>
+                        <td><form><input value='$row1[9]' name='lunch'type='submit'>$r5</form></td>
+                        <td><form><input value='$row1[9]' name='dinner'type='submit'>$r6</form></td>
+                        </tr>
+                        ";
                     }
-                    else{
-                        $r1 = "Not Completed";
-                    }
-                    if($row1[3] == 1){
-                        $r2 = "Completed";
-                    }
-                    else{
-                        $r2 = "Not Completed";
-                    }
-                    if($row1[4] == 1){
-                        $r3 = "Completed";
-                    }
-                    else{
-                        $r3 = "Not Completed";
-                    }
-                    if($row1[5] == 1){
-                        $r4 = "Completed";
-                    }
-                    else{
-                        $r4 = "Not Completed";
-                    }
-                    if($row1[6] == 1){
-                        $r5 = "Completed";
-                    }
-                    else{
-                        $r5 = "Not Completed";
-                    }
-                    if($row1[7] == 1){
-                        $r6 = "Completed";
-                    }
-                    else{
-                        $r6 = "Not Completed";
-                    }
-                echo"<td>$row1[0] $row1[1]</td>
-                <td><form><input value='' name='morning' type='submit'>$r1</form></td>
-                <td><form><input value='' name='afternoon'type='submit'>$r2</form></td>
-                <td><form><input value='' name='night'type='submit'>$r3</form></td>
-                <td><form><input value='' name='breakfast'type='submit'>$r4</form></td>
-                <td><form><input value='' name='lunch'type='submit'>$r5</form></td>
-                <td><form><input value='' name='dinner'type='submit'>$r6</form></td>
-                ";
-
-                }}
-
+                }
             }
 
             if($row2[0] == (" $id ") ){
 
-                $sql2 = "SELECT  Fname, Lname,Morning_Med,Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner, `Group` FROM Caregiver JOIN  Patient ON Patient.Pat_ID = Caregiver.Pat_ID WHERE `Group` = 'B' ";
+
+                $sql2 = "SELECT  Fname, Lname,Morning_Med,Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner, `Group`,Patient.Pat_ID FROM Caregiver JOIN  Patient ON Patient.Pat_ID = Caregiver.Pat_ID WHERE `Group` = 'B'";
             $res_2 = mysqli_query($conn, $sql2);
             if($res_2) {
 
                 while($row2 = mysqli_fetch_row($res_2)) {
-                    if($row1[2] == 1){
-                        $r1 = "Completed";
+                    if($row2[2] == 1){
+                        $r1 = "✔";
                     }
                     else{
-                        $r1 = "Not Completed";
+                        $r1 = "✘";
                     }
-                    if($row1[3] == 1){
-                        $r2 = "Completed";
-                    }
-                    else{
-                        $r2 = "Not Completed";
-                    }
-                    if($row1[4] == 1){
-                        $r3 = "Completed";
+                    if($row2[3] == 1){
+                        $r2 = "✔";
                     }
                     else{
-                        $r3 = "Not Completed";
+                        $r2 = "✘";
                     }
-                    if($row1[5] == 1){
-                        $r4 = "Completed";
-                    }
-                    else{
-                        $r4 = "Not Completed";
-                    }
-                    if($row1[6] == 1){
-                        $r5 = "Completed";
+                    if($row2[4] == 1){
+                        $r3 = "✔";
                     }
                     else{
-                        $r5 = "Not Completed";
+                        $r3 = "✘";
                     }
-                    if($row1[7] == 1){
-                        $r6 = "Completed";
+                    if($row2[5] == 1){
+                        $r4 = "✔";
                     }
                     else{
-                        $r6 = "Not Completed";
+                        $r4 = "✘";
                     }
-                echo"<td>$row1[0] $row1[1]</td>
-                <td><input type='checkbox'>$r1</td>
-                <td><input type='checkbox'>$r2</td>
-                <td><input type='checkbox'>$r3</td>
-                <td><input type='checkbox'>$r4</td>
-                <td><input type='checkbox'>$r5</td>
-                <td><input type='checkbox'>$r6</td>
-                ";
+                    if($row2[6] == 1){
+                        $r5 = "✔";
+                    }
+                    else{
+                        $r5 = "✘";
+                    }
+                    if($row2[7] == 1){
+                        $r6 = "✔";
+                    }
+                    else{
+                        $r6 = "✘";
+                    }
+                    echo"<td>$row2[0] $row2[1]</td>
+                    <td><form><input value='$row2[9]' name='morning' type='submit'>$r1</form></td>
+                    <td><form><input value='$row2[9]' name='afternoon'type='submit'>$r2</form></td>
+                    <td><form><input value='$row2[9]' name='night'type='submit'>$r3</form></td>
+                    <td><form><input value='$row2[9]' name='breakfast'type='submit'>$r4</form></td>
+                    <td><form><input value='$row2[9]' name='lunch'type='submit'>$r5</form></td>
+                    <td><form><input value='$row2[9]' name='dinner'type='submit'>$r6</form></td>
+                    </tr>
+                    ";
                 }}
             }
             elseif($row3[0] == (" $id ") ){
 
-                $sql3 = "SELECT  Fname, Lname,Morning_Med,Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner, `Group` FROM Caregiver JOIN  Patient ON Patient.Pat_ID = Caregiver.Pat_ID WHERE `Group` = 'C' ";
+                $sql3 = "SELECT  Fname, Lname,Morning_Med,Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner, `Group`,Patient.Pat_ID FROM Caregiver JOIN  Patient ON Patient.Pat_ID = Caregiver.Pat_ID WHERE `Group` = 'C' ";
             $res_3 = mysqli_query($conn, $sql3);
 
             if($res_3) {
 
                 while($row3 = mysqli_fetch_row($res_3)) {
                     if($row3[2] == 1){
-                        $r1 = "Completed";
+                        $r1 = "✔";
                     }
                     else{
-                        $r1 = "Not Completed";
+                        $r1 = "✘";
                     }
                     if($row3[3] == 1){
-                        $r2 = "Completed";
+                        $r2 = "✔";
                     }
                     else{
-                        $r2 = "Not Completed";
+                        $r2 = "✘";
                     }
                     if($row3[4] == 1){
-                        $r3 = "Completed";
+                        $r3 = "✔";
                     }
                     else{
-                        $r3 = "Not Completed";
+                        $r3 = "✘";
                     }
                     if($row3[5] == 1){
-                        $r4 = "Completed";
+                        $r4 = "✔";
                     }
                     else{
-                        $r4 = "Not Completed";
+                        $r4 = "✘";
                     }
                     if($row3[6] == 1){
-                        $r5 = "Completed";
+                        $r5 = "✔";
                     }
                     else{
-                        $r5 = "Not Completed";
+                        $r5 = "✘";
                     }
                     if($row3[7] == 1){
-                        $r6 = "Completed";
+                        $r6 = "✔";
                     }
                     else{
-                        $r6 = "Not Completed";
+                        $r6 = "✘";
                     }
-                echo"<td>$row3[0] $row3[1]</td>
-                <td><input type='checkbox'>$r1</td>
-                <td><input type='checkbox'>$r2</td>
-                <td><input type='checkbox'>$r3</td>
-                <td><input type='checkbox'>$r4</td>
-                <td><input type='checkbox'>$r5</td>
-                <td><input type='checkbox'>$r6</td>
-                ";
+                    echo"<td>$row3[0] $row3[1]</td>
+                    <td><form><input value='$row3[9]' name='morning' type='submit'>$r1</form></td>
+                    <td><form><input value='$row3[9]' name='afternoon'type='submit'>$r2</form></td>
+                    <td><form><input value='$row3[9]' name='night'type='submit'>$r3</form></td>
+                    <td><form><input value='$row3[9]' name='breakfast'type='submit'>$r4</form></td>
+                    <td><form><input value='$row3[9]' name='lunch'type='submit'>$r5</form></td>
+                    <td><form><input value='$row3[9]' name='dinner'type='submit'>$r6</form></td>
+                    </tr>
+                    ";
                 }}
             }
             elseif($row4[0] == (" $id ") ){
 
-                $sql4 = "SELECT  Fname, Lname,Morning_Med,Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner, `Group` FROM Caregiver JOIN  Patient ON Patient.Pat_ID = Caregiver.Pat_ID WHERE `Group` = 'D' ";
+                $sql4 = "SELECT  Fname, Lname,Morning_Med,Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner, `Group`,Patient.Pat_ID FROM Caregiver JOIN  Patient ON Patient.Pat_ID = Caregiver.Pat_ID WHERE `Group` = 'D' ";
             $res_4 = mysqli_query($conn, $sql4);
 
             if($res_4) {
 
                 while($row4 = mysqli_fetch_row($res_4)) {
                     if($row4[2] == 1){
-                        $r1 = "Completed";
+                        $r1 = "✔";
                     }
                     else{
-                        $r1 = "Not Completed";
+                        $r1 = "✘";
                     }
                     if($row4[3] == 1){
-                        $r2 = "Completed";
+                        $r2 = "✔";
                     }
                     else{
-                        $r2 = "Not Completed";
+                        $r2 = "✘";
                     }
                     if($row4[4] == 1){
-                        $r3 = "Completed";
+                        $r3 = "✔";
                     }
                     else{
-                        $r3 = "Not Completed";
+                        $r3 = "✘";
                     }
                     if($row4[5] == 1){
-                        $r4 = "Completed";
+                        $r4 = "✔";
                     }
                     else{
-                        $r4 = "Not Completed";
+                        $r4 = "✘";
                     }
                     if($row4[6] == 1){
-                        $r5 = "Completed";
+                        $r5 = "✔";
                     }
                     else{
-                        $r5 = "Not Completed";
+                        $r5 = "✘";
                     }
                     if($row4[7] == 1){
-                        $r6 = "Completed";
+                        $r6 = "✔";
                     }
                     else{
-                        $r6 = "Not Completed";
+                        $r6 = "✘";
                     }
-                echo"<td>$row4[0] $row4[1]</td>
-                <td><input type='checkbox'>$r1</td>
-                <td><input type='checkbox'>$r2</td>
-                <td><input type='checkbox'>$r3</td>
-                <td><input type='checkbox'>$r4</td>
-                <td><input type='checkbox'>$r5</td>
-                <td><input type='checkbox'>$r6</td>
-                ";
+                    echo"<td>$row4[0] $row4[1]</td>
+                    <td><form><input value='$row4[9]' name='morning' type='submit'>$r1</form></td>
+                    <td><form><input value='$row4[9]' name='afternoon'type='submit'>$r2</form></td>
+                    <td><form><input value='$row4[9]' name='night'type='submit'>$r3</form></td>
+                    <td><form><input value='$row4[9]' name='breakfast'type='submit'>$r4</form></td>
+                    <td><form><input value='$row4[9]' name='lunch'type='submit'>$r5</form></td>
+                    <td><form><input value='$row4[9]' name='dinner'type='submit'>$r6</form></td>
+                    </tr>
+                    ";
                 }}
             }
             }
