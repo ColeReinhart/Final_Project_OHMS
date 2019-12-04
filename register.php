@@ -23,6 +23,8 @@ if($role == "Patient" & $fname != "" & $lname != "" & $email != "" & $phone != "
     $row_id = mysqli_fetch_row($result_search);
     $sql_care = "INSERT INTO   `Caregiver` (Pat_ID, Morning_Med, Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner) Values ('$row_id[0]',0,0,0,0,0,0)";
     mysqli_query($conn,$sql_care);
+    $sql_pay = "INSERT INTO   `Payment` (Pat_ID, Total_due) Values ('$row_id[0]', 0)";
+    mysqli_query($conn,$sql_pay);
 
     header("Location:index.php");
 }

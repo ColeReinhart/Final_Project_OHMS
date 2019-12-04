@@ -36,7 +36,6 @@ if(isset($_GET['logout'])) {
 
         <ul>
             <li><a class = 'on' href="doc_home.php">Home</a></li>
-            <li><a href="doc_appoint.php">Doctors' Appointments</a></li>
             <li><a href="roster.php">Roster</a></li>
         </ul>
         
@@ -126,7 +125,7 @@ if(isset($_GET['logout'])) {
                 <th>Lname</th>
                 <th>Date</th>
                 </tr>";
-                $search = "SELECT Patient.Pat_ID,Patient.Fname, Patient.Lname, Appointments.Date FROM Patient Join Appointments WHERE Appointments.Pat_ID = Patient.Pat_ID AND Appointments.doc_id = {$_SESSION['empID']} AND Appointments.Date <= '{$_POST['typedate']}';";
+                $search = "SELECT Patient.Pat_ID,Patient.Fname, Patient.Lname, Appointments.Date FROM Patient Join Appointments WHERE Appointments.Pat_ID = Patient.Pat_ID AND Appointments.doc_id = {$_SESSION['empID']} AND Appointments.Date >= '{$_POST['typedate']}';";
                 $result = mysqli_query($conn, $search);;
                 if($result) {
                     $_SESSION['patid'] = [];

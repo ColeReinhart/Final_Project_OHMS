@@ -3,7 +3,7 @@ include_once 'db.php';
 
 session_start();
 
-if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == 'Doctor') {
+if(($_SESSION['loggedIn'] = true) && $_SESSION['role'] == 'Admin' || $_SESSION['role'] == 'Supervisor') {
 } else {
     header("location: index.php");
 }
@@ -51,11 +51,27 @@ if( $Date != "" & $Pat_ID != "" & $Doc_ID != ""){
         </form>
         <h1>Doctors' Appointments</h1>
 
-        <ul>
-            <li><a href="doc_home.php">Home</a></li>
-            <li><a class = 'on' href="doc_appoint.php">Doctors' Appointments</a></li>
-            <li><a href="roster.php">Roster</a></li>
-        </ul>
+        <?php
+        switch ($_SESSION['role']) {
+          case 'Supervisor':
+            echo "<ul>
+            <li><a href='roster.php'>Home</a></li>
+            <li><a href='new_roster.php'>New Roster</a></li>
+            <li><a class='on' href='doc_appoint.php'>Doctor Appointments</a></li></ul>";
+            break;
+          case 'Admin':
+            echo "<ul><li><a href='admin.php'>Home</a></li>
+            <li><a href='role.php'>Roles</a></li>
+            <li><a href='ad_emp.php'>Employee</a></li>
+            <li><a href='ad_pat.php'>Patients</a></li>
+            <li><a href='reg_app.php'>Registration Approval</a></li>
+            <li><a href='roster.php'>Roster</a></li>
+            <li><a href='ad_report.php'>Admin's Report</a></li>
+            <li><a href='payment.php'>Payment</a></li>
+            <li><a class='on' href='doc_appoint.php'>Doctor Appointments</a></li></ul>"; 
+            break;
+        }
+        ?>
 
         <form action="doc_appoint.php">
         <label>Patient ID</label>
