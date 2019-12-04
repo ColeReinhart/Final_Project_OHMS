@@ -64,7 +64,7 @@ if(isset($_GET['login'])) {
             }
           }
         }
-        if ($row[13] == 1) {
+        if ($row[14] == 1) {
           if ($row[6] == $_GET['email'] ?? '') {
             if ($row[7] == $_GET['psw'] ?? ''){
               $_SESSION['loggedIn'] == true;
