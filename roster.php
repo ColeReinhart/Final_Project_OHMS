@@ -47,7 +47,6 @@ if(isset($_GET['Submit'])){
           case 'Doctor':
             echo "<ul>
             <li><a href='doc_home.php'>Home</a></li>
-            <li><a href='doc_appoint.php'>Doctors' Appointments</a></li>
             <li><a class = 'on' href='roster.php'>Roster</a></li>
             </ul>";
             break;

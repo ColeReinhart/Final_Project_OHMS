@@ -32,6 +32,8 @@ if(isset($_GET['submit'])){
 if( $Date != "" & $Pat_ID != "" & $Doc_ID != ""){
     $sql = "INSERT INTO `Appointments`(Pat_ID, Doc_ID, Date) VALUES ('$Pat_ID','$Doc_ID','$Date')";
     mysqli_query($conn,$sql);
+    $sqlapppay = "UPDATE Payment SET Total_due = Total_due + 50 WHERE Pat_ID = '$Pat_ID'";
+    mysqli_query($conn, $sqlapppay);
 }
 }
 ?>

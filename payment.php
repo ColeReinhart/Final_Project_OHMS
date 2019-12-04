@@ -88,7 +88,27 @@ if(isset($sub)){
         </form>
 
 
-        <?php echo '$10 for every day, $50 for every appointment' ?>
+        <?php echo '$10 for every day, $50 for every appointment';
+
+            echo "<table>";
+            echo'<tr>
+                <th>Name</th>
+                <th>Patient ID</th>
+                <th>Total Due</th>
+                </tr>';
+            $search = "SELECT Patient.Fname, Patient.Lname, Patient.Pat_ID, Payment.Total_due FROM Patient JOIN Payment ON Payment.Pat_ID = Patient.Pat_ID;";
+            $result = mysqli_query($conn, $search);;
+            if($result) {
+                while($row = mysqli_fetch_row($result)) {
+                    echo "<th>$row[0] $row[1]</th>";
+                    echo "<th>$row[2]</th>";
+                    echo "<th>$row[3]</th>";
+                    echo "</tr>";
+                }
+            }
+        
+?>
+
 
         <footer>
             <ul>
