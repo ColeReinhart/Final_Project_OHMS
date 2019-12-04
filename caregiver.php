@@ -21,19 +21,19 @@ if(isset($_GET['morning'])) {
 }
 
 $_SESSION['now'] = date("Y-m-d",time());
-
+$Date_now = $_SESSION['now'];
 if(isset($_SESSION['morning'])){
     if ($_SESSION['now'] == $_SESSION['date']) {
-        $yup = "SELECT Morning_Med FROM Caregiver WHERE `Pat_ID` = {$_SESSION['morning']};";
+        $yup = "SELECT Morning_Med FROM Caregiver WHERE `Pat_ID` = {$_SESSION['morning']} AND Date = '$Date_now';";
         $result = mysqli_query($conn, $yup);
         if($result) {
             $row = mysqli_fetch_row($result);
             if ($row[0] == 0) {
-                $sql_morning = "UPDATE `Caregiver` SET `Morning_Med` = 1 WHERE `Pat_ID` = {$_SESSION['morning']}";
+                $sql_morning = "UPDATE `Caregiver` SET `Morning_Med` = 1 WHERE `Pat_ID` = {$_SESSION['morning']} AND Date = '$Date_now'";
                 mysqli_query($conn, $sql_morning);
                 unset($_SESSION['morning']);
             } else {
-                $sql_morning = "UPDATE `Caregiver` SET `Morning_Med` = 0 WHERE `Pat_ID` = {$_SESSION['morning']}";
+                $sql_morning = "UPDATE `Caregiver` SET `Morning_Med` = 0 WHERE `Pat_ID` = {$_SESSION['morning']} AND Date = '$Date_now'";
                 mysqli_query($conn, $sql_morning);
                 unset($_SESSION['morning']);
             }
@@ -47,16 +47,16 @@ if(isset($_GET['afternoon'])) {
 
 if(isset($_SESSION['afternoon'])) {
     if ($_SESSION['now'] == $_SESSION['date']) {
-        $yup2 = "SELECT Afternoon_Med FROM Caregiver WHERE `Pat_ID` = {$_SESSION['afternoon']};";
+        $yup2 = "SELECT Afternoon_Med FROM Caregiver WHERE `Pat_ID` = {$_SESSION['afternoon']} AND Date = '$Date_now';";
         $result2 = mysqli_query($conn, $yup2);
         if($result2) {
             $row2 = mysqli_fetch_row($result2);
             if ($row2[0] == 0) {
-                $sql_afternoon = "UPDATE `Caregiver` SET `Afternoon_Med` = 1 WHERE `Pat_ID` = {$_SESSION['afternoon']}";
+                $sql_afternoon = "UPDATE `Caregiver` SET `Afternoon_Med` = 1 WHERE `Pat_ID` = {$_SESSION['afternoon']} AND Date = '$Date_now'";
                 mysqli_query($conn, $sql_afternoon);
                 unset($_SESSION['afternoon']);
             } else {
-                $sql_afternoon = "UPDATE `Caregiver` SET `Afternoon_Med` = 0 WHERE `Pat_ID` = {$_SESSION['afternoon']}";
+                $sql_afternoon = "UPDATE `Caregiver` SET `Afternoon_Med` = 0 WHERE `Pat_ID` = {$_SESSION['afternoon']} AND Date = '$Date_now'";
                 mysqli_query($conn, $sql_afternoon);
                 unset($_SESSION['afternoon']);
             }
@@ -70,16 +70,16 @@ if(isset($_GET['night'])) {
 
 if(isset($_SESSION['night'])){
     if ($_SESSION['now'] == $_SESSION['date']) {
-        $yup3 = "SELECT Night_Med FROM Caregiver WHERE `Pat_ID` = {$_SESSION['night']};";
+        $yup3 = "SELECT Night_Med FROM Caregiver WHERE `Pat_ID` = {$_SESSION['night']} AND Date = '$Date_now';";
         $result3 = mysqli_query($conn, $yup3);
         if($result3) {
             $row3 = mysqli_fetch_row($result3);
             if ($row3[0] == 0) {
-                $sql_night = "UPDATE `Caregiver` SET `Night_Med` = 1 WHERE `Pat_ID` = {$_SESSION['night']}";
+                $sql_night = "UPDATE `Caregiver` SET `Night_Med` = 1 WHERE `Pat_ID` = {$_SESSION['night']} AND Date = '$Date_now'";
                 mysqli_query($conn, $sql_night);
                 unset($_SESSION['night']);
             } else {
-                $sql_night = "UPDATE `Caregiver` SET `Night_Med` = 0 WHERE `Pat_ID` = {$_SESSION['night']}";
+                $sql_night = "UPDATE `Caregiver` SET `Night_Med` = 0 WHERE `Pat_ID` = {$_SESSION['night']} AND Date = '$Date_now'";
                 mysqli_query($conn, $sql_night);
                 unset($_SESSION['night']);
             }
@@ -98,11 +98,11 @@ if(isset($_SESSION['breakfast'])){
         if($result4) {
             $row4 = mysqli_fetch_row($result4);
             if ($row4[0] == 0) {
-                $sql_breakfast = "UPDATE `Caregiver` SET `Breakfast` = 1 WHERE `Pat_ID` = {$_SESSION['breakfast']}";
+                $sql_breakfast = "UPDATE `Caregiver` SET `Breakfast` = 1 WHERE `Pat_ID` = {$_SESSION['breakfast']} AND Date = '$Date_now'";
                 mysqli_query($conn, $sql_breakfast);
                 unset($_SESSION['breakfast']);
             } else {
-                $sql_breakfast = "UPDATE `Caregiver` SET `Breakfast` = 0 WHERE `Pat_ID` = {$_SESSION['breakfast']}";
+                $sql_breakfast = "UPDATE `Caregiver` SET `Breakfast` = 0 WHERE `Pat_ID` = {$_SESSION['breakfast']} AND Date = '$Date_now'";
                 mysqli_query($conn, $sql_breakfast);
                 unset($_SESSION['breakfast']);
             }
@@ -116,16 +116,16 @@ if(isset($_GET['lunch'])) {
 
 if(isset($_SESSION['lunch'])){
     if ($_SESSION['now'] == $_SESSION['date']) {
-        $yup5 = "SELECT Lunch FROM Caregiver WHERE `Pat_ID` = {$_SESSION['lunch']};";
+        $yup5 = "SELECT Lunch FROM Caregiver WHERE `Pat_ID` = {$_SESSION['lunch']} AND Date = '$Date_now';";
         $result5 = mysqli_query($conn, $yup5);
         if($result5) {
             $row5 = mysqli_fetch_row($result5);
             if ($row5[0] == 0) {
-                $sql_lunch = "UPDATE `Caregiver` SET `Lunch` = 1 WHERE `Pat_ID` = {$_SESSION['lunch']}";
+                $sql_lunch = "UPDATE `Caregiver` SET `Lunch` = 1 WHERE `Pat_ID` = {$_SESSION['lunch']} AND Date = '$Date_now'";
                 mysqli_query($conn, $sql_lunch);
                 unset($_SESSION['lunch']);
             } else {
-                $sql_lunch = "UPDATE `Caregiver` SET `Lunch` = 0 WHERE `Pat_ID` = {$_SESSION['lunch']}";
+                $sql_lunch = "UPDATE `Caregiver` SET `Lunch` = 0 WHERE `Pat_ID` = {$_SESSION['lunch']} AND Date = '$Date_now'";
                 mysqli_query($conn, $sql_lunch);
                 unset($_SESSION['lunch']);
             }
@@ -139,16 +139,16 @@ if(isset($_GET['dinner'])) {
 
 if(isset($_SESSION['dinner'])){
     if ($_SESSION['now'] == $_SESSION['date']) {
-        $yup6 = "SELECT Dinner FROM Caregiver WHERE `Pat_ID` = {$_SESSION['dinner']};";
+        $yup6 = "SELECT Dinner FROM Caregiver WHERE `Pat_ID` = {$_SESSION['dinner']} AND Date = '$Date_now'";
         $result6 = mysqli_query($conn, $yup6);
         if($result6) {
             $row6 = mysqli_fetch_row($result6);
             if ($row6[0] == 0) {
-                $sql_dinner = "UPDATE `Caregiver` SET `Dinner` = 1 WHERE `Pat_ID` = {$_SESSION['dinner']}";
+                $sql_dinner = "UPDATE `Caregiver` SET `Dinner` = 1 WHERE `Pat_ID` = {$_SESSION['dinner']} AND Date = '$Date_now'";
                 mysqli_query($conn, $sql_dinner);
                 unset($_SESSION['dinner']);
             } else {
-                $sql_dinner = "UPDATE `Caregiver` SET `Dinner` = 0 WHERE `Pat_ID` = {$_SESSION['dinner']}";
+                $sql_dinner = "UPDATE `Caregiver` SET `Dinner` = 0 WHERE `Pat_ID` = {$_SESSION['dinner']} AND Date = '$Date_now'";
                 mysqli_query($conn, $sql_dinner);
                 unset($_SESSION['dinner']);
             }
@@ -188,7 +188,7 @@ if(isset($_GET['Date'])) {
         <?php
             $time = date("Y-m-d",time());
 
-        echo"<input name='Date' type='date' value='$time' readonly>";
+        echo"<input name='Date' type='date' value='$time' >";
         ?>
         <input name="sub_date" type="submit" value = "Submit">
 </form>
@@ -223,7 +223,7 @@ if(isset($_GET['Date'])) {
                 $result4 = mysqli_query($conn, $sequel4);
                 $row4 = mysqli_fetch_row($result4);
                             if($row1[0] == (" $id ") ){
-                            $sql1 = "SELECT  Fname, Lname,Morning_Med,Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner, `Group`, Patient.Pat_ID FROM Caregiver JOIN  Patient ON Patient.Pat_ID = Caregiver.Pat_ID WHERE `Group` = 'A' ";
+                            $sql1 = "SELECT  Fname, Lname,Morning_Med,Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner, `Group`, Patient.Pat_ID FROM Caregiver JOIN  Patient ON Patient.Pat_ID = Caregiver.Pat_ID WHERE `Group` = 'A' AND `Date` = '$Date' ";
                 $res_1 = mysqli_query($conn, $sql1);
                 if($res_1) {
                     while($row1 = mysqli_fetch_row($res_1)) {
@@ -279,7 +279,7 @@ if(isset($_GET['Date'])) {
             if($row2[0] == (" $id ") ){
 
 
-                $sql2 = "SELECT  Fname, Lname,Morning_Med,Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner, `Group`,Patient.Pat_ID FROM Caregiver JOIN  Patient ON Patient.Pat_ID = Caregiver.Pat_ID WHERE `Group` = 'B'";
+                $sql2 = "SELECT  Fname, Lname,Morning_Med,Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner, `Group`,Patient.Pat_ID FROM Caregiver JOIN  Patient ON Patient.Pat_ID = Caregiver.Pat_ID WHERE `Group` = 'B' AND `Date` ='$Date'";
             $res_2 = mysqli_query($conn, $sql2);
             if($res_2) {
 
@@ -333,7 +333,7 @@ if(isset($_GET['Date'])) {
             }
             elseif($row3[0] == (" $id ") ){
 
-                $sql3 = "SELECT  Fname, Lname,Morning_Med,Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner, `Group`,Patient.Pat_ID FROM Caregiver JOIN  Patient ON Patient.Pat_ID = Caregiver.Pat_ID WHERE `Group` = 'C' ";
+                $sql3 = "SELECT  Fname, Lname,Morning_Med,Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner, `Group`,Patient.Pat_ID FROM Caregiver JOIN  Patient ON Patient.Pat_ID = Caregiver.Pat_ID WHERE `Group` = 'C' AND `Date` = '$Date' ";
             $res_3 = mysqli_query($conn, $sql3);
 
             if($res_3) {
@@ -388,7 +388,7 @@ if(isset($_GET['Date'])) {
             }
             elseif($row4[0] == (" $id ") ){
 
-                $sql4 = "SELECT  Fname, Lname,Morning_Med,Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner, `Group`,Patient.Pat_ID FROM Caregiver JOIN  Patient ON Patient.Pat_ID = Caregiver.Pat_ID WHERE `Group` = 'D' ";
+                $sql4 = "SELECT  Fname, Lname,Morning_Med,Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner, `Group`,Patient.Pat_ID FROM Caregiver JOIN  Patient ON Patient.Pat_ID = Caregiver.Pat_ID WHERE `Group` = 'D' AND `Date` = '$Date' ";
             $res_4 = mysqli_query($conn, $sql4);
 
             if($res_4) {
