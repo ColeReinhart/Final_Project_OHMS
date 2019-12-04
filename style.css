@@ -30,7 +30,21 @@ input {
     margin-top: 10px;
 }
 
+.callguy {
+    z-index: 1;
+}
+
+img {
+    width: 100%;
+    height: 700px;
+}
+
 /* Login Button and Form */
+.butt {
+    padding: 50px;
+    display: flex;
+}
+
 #login, #register {
     font: sans-serif;
     color: #1e1e1e;

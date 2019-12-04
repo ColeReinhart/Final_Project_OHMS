@@ -90,8 +90,14 @@ if(isset($_GET['login'])) {
 </head>
     <h1>Welcome to Old Farts and Darts</h1>
 
+    <div class = 'callguy'>
+    <img src="https://goingconcern-fe8.kxcdn.com/wp-content/uploads/2019/05/Hide-Your-Pain-Harold-1024x576.jpg"></img>
+    </div>
+
+    <div class = 'butt'>
     <button class="open-button" onclick="openForm()" name="login" id="login" value="Login">Login</button>
-    <a href="register.php" id="register" value="Register">Register </a>  
+    <a href="register.php" id="register" value="Register">Register </a> 
+    </div> 
 
 <div class="form-popup" id="myForm">
   <form action="" class="form-container">
@@ -125,7 +131,6 @@ if(isset($_GET['login'])) {
     }
 
 </script>
-<img src="https://goingconcern-fe8.kxcdn.com/wp-content/uploads/2019/05/Hide-Your-Pain-Harold-1024x576.jpg"></img>
 <footer>
   <ul>
     <li>Phone: 717-555-5555</li>
