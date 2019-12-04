@@ -20,11 +20,30 @@ if(isset($_GET['login'])) {
             case 'Caregiver':
               $_SESSION['loggedIn'] == true;
               $_SESSION['empID'] = $row[9];
+               
+              $Date_now = date("Y-m-d",time());
+              $sql_1 = "SELECT Pat_ID FROM Patient";
+              $results_1 = mysqli_query($conn,$sql_1);
+
+
+              while($result_1 = mysqli_fetch_row($results_1)) {
+                
+                $sql_2 = "SELECT * FROM Caregiver WHERE Date = '$Date_now' AND Pat_ID = '$result_1[0]'";
+                $new_entry = mysqli_query($conn,$sql_2);
+                var_dump($new_entry);
+                echo"____";
+                if(mysqli_num_rows($new_entry) == 0){
+                $sql_care = "INSERT INTO `Caregiver` (Date, Pat_ID, Morning_Med, Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner) Values ('$Date_now', '$result_1[0]',0,0,0,0,0,0)";
+                mysqli_query($conn,$sql_care);
+            }
+          }
+
               header( 'Location: caregiver.php');
               break;
             case 'Admin':
               $_SESSION['loggedIn'] == true;
               $_SESSION['empID'] = $row[9];
+
               header( 'Location: admin.php');
               break;
             case 'Supervisor':
@@ -106,7 +125,7 @@ if(isset($_GET['login'])) {
     }
 
 </script>
-
+<img src="https://goingconcern-fe8.kxcdn.com/wp-content/uploads/2019/05/Hide-Your-Pain-Harold-1024x576.jpg"></img>
 <footer>
   <ul>
     <li>Phone: 717-555-5555</li>
