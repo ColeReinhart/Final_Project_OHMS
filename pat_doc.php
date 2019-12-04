@@ -42,7 +42,6 @@ if(isset($_GET['logout'])) {
 
         <ul>
             <li><a href="doc_home.php">Home</a></li>
-            <li><a href="doc_appoint.php">Doctors' Appointments</a></li>
             <li><a href="Roster.php">Roster</a></li>
             <li><a class = 'on' href="pat_doc.php">Patients' of the Doctor</a></li>
         </ul>

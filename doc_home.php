@@ -36,7 +36,6 @@ if(isset($_GET['logout'])) {
 
         <ul>
             <li><a class = 'on' href="doc_home.php">Home</a></li>
-            <li><a href="doc_appoint.php">Doctors' Appointments</a></li>
             <li><a href="roster.php">Roster</a></li>
         </ul>
         
@@ -52,7 +51,7 @@ if(isset($_GET['logout'])) {
             </tr>
             <tr>
                 <?php
-                $med = "SELECT Patient.Fname, Patient.Lname, Appointments.Date, Appointments.Comment, Appointments.Morning_Med, Appointments.Afternoon_Med, Appointments.Night_Med FROM Patient LEFT JOIN Appointments ON Appointments.Pat_ID = Patient.Pat_ID WHERE Appointments.doc_id = {$_SESSION['empID']};";
+                $med = "SELECT Patient.Fname, Patient.Lname, Appointments.Date, Appointments.Comment, Appointments.Morning_Med, Appointments.Afternoon_Med, Appointments.Night_Med FROM Patient LEFT JOIN Appointments ON Appointments.Pat_ID = Patient.Pat_ID WHERE Appointments.doc_id = {$_SESSION['empID']} AND Appointments.Date < NOW() - INTERVAL 1 DAY;";
                 $result = mysqli_query($conn, $med);
                 if($result) {
                     while($row = mysqli_fetch_row($result)) {
@@ -81,7 +80,7 @@ if(isset($_GET['logout'])) {
         <form method = "POST" action="doc_home.php" name = "date">
             <label>Date:</label>
             <input type="date" name = "typedate">
-            <input type="submit" name="search" value="search">
+            <input type="submit" name="search" value="Search">
         </form>
         <br>
 
@@ -126,7 +125,7 @@ if(isset($_GET['logout'])) {
                 <th>Lname</th>
                 <th>Date</th>
                 </tr>";
-                $search = "SELECT Patient.Pat_ID,Patient.Fname, Patient.Lname, Appointments.Date FROM Patient Join Appointments WHERE Appointments.Pat_ID = Patient.Pat_ID AND Appointments.doc_id = {$_SESSION['empID']} AND Appointments.Date <= '{$_POST['typedate']}';";
+                $search = "SELECT Patient.Pat_ID,Patient.Fname, Patient.Lname, Appointments.Date FROM Patient Join Appointments WHERE Appointments.Pat_ID = Patient.Pat_ID AND Appointments.doc_id = {$_SESSION['empID']} AND Appointments.Date BETWEEN NOW() - INTERVAL 1 DAY AND '{$_POST['typedate']}' ORDER BY Appointments.Date ASC;";
                 $result = mysqli_query($conn, $search);;
                 if($result) {
                     $_SESSION['patid'] = [];

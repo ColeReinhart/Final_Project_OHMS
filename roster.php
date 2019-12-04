@@ -47,7 +47,6 @@ if(isset($_GET['Submit'])){
           case 'Doctor':
             echo "<ul>
             <li><a href='doc_home.php'>Home</a></li>
-            <li><a href='doc_appoint.php'>Doctors' Appointments</a></li>
             <li><a class = 'on' href='roster.php'>Roster</a></li>
             </ul>";
             break;
@@ -65,11 +64,13 @@ if(isset($_GET['Submit'])){
             <li><a href='reg_app.php'>Registration Approval</a></li>
             <li><a class='on' href='roster.php'>Roster</a></li>
             <li><a href='ad_report.php'>Admin's Report</a></li>
-            <li><a href='payment.php'>Payment</a></li></ul>"; 
+            <li><a href='payment.php'>Payment</a></li>
+            <li><a href='doc_appoint.php'>Doctor Appointments</a></li></ul>"; 
             break;
         case 'Supervisor':
             echo "<ul><li><a class = 'on' href='roster.php'>Home</a></li>
-            <li><a href='new_roster.php'>New Roster</a></li></ul>"; 
+            <li><a href='new_roster.php'>New Roster</a></li>
+            <li><a href='doc_appoint.php'>Doctor Appointments</a></li></ul>";
             break;
         }
       ?>

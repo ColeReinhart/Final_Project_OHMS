@@ -49,6 +49,7 @@ if(isset($_GET['logout'])) {
         <ul>
             <li><a href="roster.php">Home</a></li>
             <li><a class = 'on' href="new_roster.php">New Roster</a></li>
+            <li><a href='doc_appoint.php'>Doctor Appointments</a></li></ul>
         </ul>
 
         <form action="new_roster.php">

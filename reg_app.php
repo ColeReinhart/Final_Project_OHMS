@@ -75,6 +75,7 @@ if(isset($_POST['patblock'])) {
             <li><a href="roster.php">Roster</a></li>
             <li><a href="ad_report.php">Admin's Report</a></li>
             <li><a href="payment.php">Payment</a></li>
+            <li><a href='doc_appoint.php'>Doctor Appointments</a></li>
         </ul>
 
         <table>
