@@ -57,6 +57,8 @@ if(isset($_GET['role_sub'])){
             <li><a href="ad_report.php">Admin's Report</a></li>
             <li><a href="payment.php">Payment</a></li>
             <li><a href='doc_appoint.php'>Doctor Appointments</a></li>
+            <li><a href='new_roster.php'>New Roster</a></li>
+            </ul>
         </ul>
 
                 
@@ -65,7 +67,7 @@ if(isset($_GET['role_sub'])){
         <input type="text" name="role_name">
         <br>
         <label> Access Level</label>
-        <input type="text" name="access">
+        <input type="number" name="access" min = 0>
         <input type="submit" name="role_sub">
 
         </form>

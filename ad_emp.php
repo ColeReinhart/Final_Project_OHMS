@@ -47,19 +47,19 @@ if(isset($_GET['emp_id'])){
             <li><a href="ad_report.php">Admin's Report</a></li>
             <li><a href="payment.php">Payment</a></li>
             <li><a href='doc_appoint.php'>Doctor Appointments</a></li>
+            <li><a href='new_roster.php'>New Roster</a></li>
         </ul>
         <form action="ad_emp.php" style="Float: left;">
         <label>Employee ID</label>
-        <input name="emp"type="number">
+        <input name="emp"type="number" min = 1>
 
     
         <br>
 
         <label>New Salary</label>
-        <input name="salary" type="number" >
+        <input name="salary" type="number" min = 1 >
         <br>
         <input name="emp_id" type="submit">
-        <input name="emp_id" type="submit" value="CANCEL">
         </form>
         <table>
             <tr>

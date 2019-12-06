@@ -70,7 +70,8 @@ if( $Date != "" & $Pat_ID != "" & $Doc_ID != ""){
             <li><a href='roster.php'>Roster</a></li>
             <li><a href='ad_report.php'>Admin's Report</a></li>
             <li><a href='payment.php'>Payment</a></li>
-            <li><a class='on' href='doc_appoint.php'>Doctor Appointments</a></li></ul>"; 
+            <li><a class='on' href='doc_appoint.php'>Doctor Appointments</a></li>
+            <li><a href='new_roster.php'>New Roster</a></li></ul>"; 
             break;
         }
         ?>
@@ -102,7 +103,6 @@ if( $Date != "" & $Pat_ID != "" & $Doc_ID != ""){
             <input type="hidden" name="Pat_ID" type="number" value="<?php if(isset($pat)){echo $pat; } ?>">
 
             <input type="submit" name="submit" value="Submit">
-            <input type="submit" name="submit" value="CANCEL">
         </form>
 
         <footer>

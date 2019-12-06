@@ -43,7 +43,6 @@ if(isset($_GET['logout'])) {
         <br>
 
         <input type="submit" name="submit" value="OKAY">
-        <input type="submit" name="submit" value="CANCEL">
 
         <table>
             <tr>

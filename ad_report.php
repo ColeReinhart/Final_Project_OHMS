@@ -40,6 +40,7 @@ if(isset($_GET['logout'])) {
             <li><a class="on" href="ad_report.php">Admin's Report</a></li>
             <li><a href="payment.php">Payment</a></li>
             <li><a href='doc_appoint.php'>Doctor Appointments</a></li>
+            <li><a href='new_roster.php'>New Roster</a></li>
         </ul>
 
         <label>Date</label>
