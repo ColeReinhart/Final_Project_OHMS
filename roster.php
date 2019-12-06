@@ -65,7 +65,8 @@ if(isset($_GET['Submit'])){
             <li><a class='on' href='roster.php'>Roster</a></li>
             <li><a href='ad_report.php'>Admin's Report</a></li>
             <li><a href='payment.php'>Payment</a></li>
-            <li><a href='doc_appoint.php'>Doctor Appointments</a></li></ul>"; 
+            <li><a href='doc_appoint.php'>Doctor Appointments</a></li>
+            <li><a href='new_roster.php'>New Roster</a></li></ul>"; 
             break;
         case 'Supervisor':
             echo "<ul><li><a class = 'on' href='roster.php'>Home</a></li>
@@ -137,7 +138,8 @@ if(isset($_GET['Submit'])){
             JOIN Employee as Group1 ON Roster.Group1_id = Group1.Emp_ID 
             JOIN Employee as Group2 ON Roster.Group2_id = Group2.Emp_ID 
             JOIN Employee as Group3 ON Roster.Group3_id = Group3.Emp_ID 
-            JOIN Employee as Group4 ON Roster.Group4_id = Group4.Emp_ID";
+            JOIN Employee as Group4 ON Roster.Group4_id = Group4.Emp_ID
+            ORDER BY Roster.Schedule_Date DESC";
 
             $result = mysqli_query($conn, $sql);
             while($row = mysqli_fetch_row($result)){

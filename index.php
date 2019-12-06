@@ -95,7 +95,7 @@ if(isset($_GET['login'])) {
 
     <div class = 'butt'>
     <button class="open-button" onclick="openForm()" name="login" id="login" value="Login">Login</button>
-    <a href="register.php" id="register" value="Register">Register </a> 
+    <button id="register" value="Register" onclick="register()">Register</button> 
     </div> 
 
 <div class="form-popup" id="myForm">
@@ -127,6 +127,10 @@ if(isset($_GET['login'])) {
 
     function closeForm() {
         document.getElementById("myForm").style.display = "none";
+    }
+
+    function register() {
+      document.location.href = 'register.php'
     }
 
 </script>

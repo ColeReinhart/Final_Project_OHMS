@@ -83,16 +83,18 @@ elseif($role == "Family_Member" & $fname != "" & $lname != "" & $email != "" & $
     <h2>Register</h2>
     <form action="register.php" class = 'reg'>
     <div class="column">
-        <label for="Role">Role</label>
-        <select name="select" class="input_space" onchange="isPatient(this)">
-            <option> Choose Role </option>
-            <option value="Patient"> Patient </option>
-            <option value="Doctor"> Doctor </option>
-            <option value="Supervisor"> Supervisor </option>
-            <option value="Admin"> Admin </option>
-            <option value="Caregiver"> Caregiver </option>
-            <option value="Family_Member"> Family Member </option>
-        </select>
+    <?php 
+    echo "<label for='Role'>Role</label>
+    <select name='select' class='input_space' onchange='isPatient(this)'>";
+    $sql = "SELECT Role FROM Role";
+    $result = mysqli_query($conn, $sql);
+    if($result) {
+        while($row = mysqli_fetch_row($result)) {
+            echo "<option value = '$row[0]'>$row[0]</option>";
+        }
+    }
+    ?>
+    </select>
         <br>
         <label for="Fname">First Name</label><input class="input_space" type="text" name="Fname"><br>
         <label for="Lname">Last Name</label><input class="input_space" type="text" name="Lname"><br>

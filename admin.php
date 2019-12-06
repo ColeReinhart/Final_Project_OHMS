@@ -52,7 +52,6 @@ if(isset($add)){
         </form>
         <h1>Admin Home</h1>
         <ul>
-
             <li><a class="on" href="admin.php">Home</a></li>
             <li><a href="role.php">Roles</a></li>
             <li><a href="ad_emp.php">Employee</a></li>
@@ -62,11 +61,12 @@ if(isset($add)){
             <li><a href="ad_report.php">Admin's Report</a></li>
             <li><a href="payment.php">Payment</a></li>
             <li><a href='doc_appoint.php'>Doctor Appointments</a></li>
+            <li><a href='new_roster.php'>New Roster</a></li>
         </ul>
         <h3>Additional Information</h3>
         <form action="admin.php">
         <label>Patient ID</label>
-        <input name="pat"type="number" value="<?php if(isset($pat)){echo $pat; } ?>">
+        <input name="pat"type="number" min = 1 value="<?php if(isset($pat)){echo $pat; } ?>">
         <input type="submit" name="pat_id" >
         </form>    
             <br>

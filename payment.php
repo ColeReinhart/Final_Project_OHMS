@@ -67,11 +67,12 @@ if(isset($sub)){
             <li><a href="ad_report.php">Admin's Report</a></li>
             <li><a class="on" href="payment.php">Payment</a></li>
             <li><a href='doc_appoint.php'>Doctor Appointments</a></li>
+            <li><a href='new_roster.php'>New Roster</a></li>
         </ul>
 
         <form action="payment.php">
         <label>Patient ID</label>
-        <input name="pat" type="number" value="<?php if(isset($_SESSION['pat'])){echo $_SESSION['pat']; } ?>">
+        <input name="pat" type="number" value="<?php if(isset($_SESSION['pat'])){echo $_SESSION['pat']; } ?>" min = 1>
         <input type="submit" name="pat_id" >
         </form>   
         <br>
@@ -82,7 +83,7 @@ if(isset($sub)){
         <br>
 
         <label>New Payment</label>
-        <input type="text" name="sub">
+        <input type="number" name="sub" min = 1>
         <input type="submit" >
         <br>
         </form>

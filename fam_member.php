@@ -49,6 +49,12 @@ $result = mysqli_query($conn, $fam_search);
         <?php echo $pat_id?>
         <br>
 
+        <label>Date:</label>
+        <?php echo 'Date Goes Here'?>
+        <br>
+
+        <input type="submit" name="submit" value="OKAY">
+
         <table>
             <tr>
                 <th>Name</th>
