@@ -77,8 +77,7 @@ if(isset($_GET['logout'])) {
         if(isset($_GET['update'])) {
             $date = date("Y-m-d",time());
             $search = "UPDATE Appointments 
-            SET Appointments.Comment = '{$_GET['col1']}', Appointments.Morning_Med = '{$_GET['col2']}', Appointments.Afternoon_Med = '{$_GET['col3']}', Appointments.Night_Med = '{$_GET['col4']}'
-            WHERE Appointments.Date = '$date' AND Appointments.Pat_ID = '{$_SESSION['anthony']}';";
+            SET Appointments.Comment = '{$_GET['col1']}', Appointments.Morning_Med = '{$_GET['col2']}', Appointments.Afternoon_Med = '{$_GET['col3']}', Appointments.Night_Med = '{$_GET['col4']}', Appointments.Completed = 1 WHERE Appointments.Date = '$date' AND Appointments.Pat_ID = '{$_SESSION['anthony']}';";
             $result = mysqli_query($conn, $search);;
             if($result) {
                     echo "<th>$row[0]</th>";
