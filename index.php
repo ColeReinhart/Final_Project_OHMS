@@ -30,8 +30,7 @@ if(isset($_GET['login'])) {
                 
                 $sql_2 = "SELECT * FROM Caregiver WHERE Date = '$Date_now' AND Pat_ID = '$result_1[0]'";
                 $new_entry = mysqli_query($conn,$sql_2);
-                var_dump($new_entry);
-                echo"____";
+
                 if(mysqli_num_rows($new_entry) == 0){
                 $sql_care = "INSERT INTO `Caregiver` (Date, Pat_ID, Morning_Med, Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner) Values ('$Date_now', '$result_1[0]',0,0,0,0,0,0)";
                 mysqli_query($conn,$sql_care);
@@ -64,7 +63,7 @@ if(isset($_GET['login'])) {
             }
           }
         }
-        if ($row[13] == 1) {
+        if ($row[14] == 1) {
           if ($row[6] == $_GET['email'] ?? '') {
             if ($row[7] == $_GET['psw'] ?? ''){
               $_SESSION['loggedIn'] == true;
