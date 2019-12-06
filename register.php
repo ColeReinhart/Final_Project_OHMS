@@ -55,10 +55,13 @@ elseif($role == "Family_Member" & $fname != "" & $lname != "" & $email != "" & $
     }
         else if(pat.value == "Family_Member"){ 
             document.getElementById("family").style.display = "block";
+            document.getElementById("patient").style.display = "none";
+
         }
 
         else {
         document.getElementById("patient").style.display = "none";
+        document.getElementById("family").style.display = "none";
     }
     }
     </script>
