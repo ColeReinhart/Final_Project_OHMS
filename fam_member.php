@@ -13,7 +13,8 @@ if(isset($_GET['logout'])) {
     session_destroy();
     header("location: index.php");
 }
-
+$time = date("Y-m-d",time());
+$time_sess = $time;
 if(isset($_GET['Date'])) {
     $_SESSION['date'] = $_GET["Date"];
     $time_sess = $_SESSION['date'];
