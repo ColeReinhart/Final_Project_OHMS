@@ -16,6 +16,7 @@ if(isset($_GET['logout'])) {
 
 if(isset($_GET['Date'])) {
     $_SESSION['date'] = $_GET["Date"];
+    $time_sess = $_SESSION['date'];
 }
 
 $fam_search = "SELECT FAMILY_MEMBER.Family_Code, Patient.Family_Code, Patient.Pat_ID, Patient.Group FROM FAMILY_MEMBER JOIN Patient ON FAMILY_MEMBER.Family_Code = Patient.Family_Code WHERE FAMILY_MEMBER.FAM_ID = {$_SESSION['famID']}";
@@ -67,7 +68,7 @@ $result = mysqli_query($conn, $fam_search);
 <?php
             $time = date("Y-m-d",time());
 
-        echo"<input name='Date' type='date' value='$time' >";
+        echo"<input name='Date' type='date' value='$time_sess' >";
         ?>
         <input name="sub_date" type="submit">
 </form>
@@ -124,9 +125,32 @@ $result = mysqli_query($conn, $fam_search);
                   if($row2 = mysqli_fetch_row($result_1)) {
                         
                   
-                        echo"<td>$row1[0] $row1[1]</td>
-                        <td> $row2[1] $row2[2]</td>
-                        <td>'appointment'</td>";
+                        echo"<td>$row1[0] $row1[1]</td>";
+
+                        
+
+                        $appt = "SELECT * FROM `Appointments` WHERE Pat_ID = $pat_id AND Date = '$Date'";
+                        $result_3 = mysqli_query($conn, $appt);
+                        if(mysqli_num_rows($result_3) == "int(0)"){
+                            echo "<td> None </td>";
+                            echo "<td>No Appointment</td>";
+                        }
+
+                        elseif($row3 = mysqli_fetch_row($result_3)) {
+                            if($row3[8] == 1){
+                            echo "<td> $row2[1] $row2[2]</td>";
+                            echo "<td> Completed </td>";
+                        
+                    }
+                    
+                        if($row3[8] == 0){
+                        echo "<td> $row2[1] $row2[2]</td>";
+                        echo "<td> Not Completed </td>";
+                    
+                }
+            }
+
+
                         if($group == 'A'){
                         echo "<td>$row2[3] $row2[4]</td>";
                   }elseif($group == 'B'){
