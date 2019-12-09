@@ -43,6 +43,10 @@ img {
     height: 700px;
 }
 
+small {
+    color: red;
+}
+
 /* Login Button and Form */
 .butt {
     padding: 50px;

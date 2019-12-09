@@ -56,7 +56,7 @@ if(isset($_GET['logout'])) {
             <th>Afternoon Medicine</th>
             <th>Night Medicine</th>
             </tr>";
-            $search = "SELECT Appointments.Date, Appointments.Comment, Appointments.Morning_Med, Appointments.Afternoon_Med, Appointments.Night_Med FROM Patient LEFT JOIN Appointments ON Appointments.Pat_ID = Patient.Pat_ID WHERE Patient.Pat_ID = '{$_SESSION['anthony']}' AND Appointments.doc_id = {$_SESSION['empID']};";
+            $search = "SELECT Appointments.Date, Appointments.Comment, Appointments.Morning_Med, Appointments.Afternoon_Med, Appointments.Night_Med FROM Patient LEFT JOIN Appointments ON Appointments.Pat_ID = Patient.Pat_ID WHERE Patient.Pat_ID = '{$_SESSION['anthony']}' AND Appointments.doc_id = {$_SESSION['empID']} ORDER BY Appointments.Date ASC;";
             $result = mysqli_query($conn, $search);;
             if($result) {
                 while($row = mysqli_fetch_row($result)) {
@@ -72,7 +72,7 @@ if(isset($_GET['logout'])) {
     ?>
         
 
-        <label>New Perscription</label>
+        <h3>New Perscription</h3>
 
         <?php
         if(isset($_GET['update'])) {

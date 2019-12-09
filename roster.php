@@ -79,7 +79,6 @@ if(isset($_GET['Submit'])){
 
         <form action="roster.php">
 
-        <label>Date:</label>
         <input name="Date" type="Date">
         <input name="Submit" type="submit">
         </form>

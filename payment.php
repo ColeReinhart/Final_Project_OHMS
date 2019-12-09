@@ -90,7 +90,7 @@ if(isset($sub)){
         </form>
 
 
-        <?php echo '$10 for every day, $50 for every appointment';
+        <?php echo '<h3>$10 for every day, $50 for every appointment</h3>';
 
             echo "<table>";
             echo'<tr>
@@ -98,7 +98,7 @@ if(isset($sub)){
                 <th>Patient ID</th>
                 <th>Total Due</th>
                 </tr>';
-            $search = "SELECT Patient.Fname, Patient.Lname, Patient.Pat_ID, Payment.Total_due FROM Patient JOIN Payment ON Payment.Pat_ID = Patient.Pat_ID;";
+            $search = "SELECT Patient.Fname, Patient.Lname, Patient.Pat_ID, Payment.Total_due FROM Patient JOIN Payment ON Payment.Pat_ID = Patient.Pat_ID ORDER BY Patient.Pat_ID ASC;";
             $result = mysqli_query($conn, $search);;
             if($result) {
                 while($row = mysqli_fetch_row($result)) {
