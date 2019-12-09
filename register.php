@@ -34,7 +34,7 @@ elseif(($role == "Doctor" or $role == "Caregiver" or $role == "Supervisor" or $r
     mysqli_query($conn,$sql);
     header("Location:index.php");
 }
-elseif($role == "Family_Member" & $fname != "" & $lname != "" & $email != "" & $phone != ""
+elseif($role == "Family Member" & $fname != "" & $lname != "" & $email != "" & $phone != ""
 & $password != "" & $birth != "" & $code != ""){
 
     $sql = "INSERT INTO `FAMILY_MEMBER`(Fname, Lname, Phone, Email, Password, DoB, Role, Family_Code) VALUES ('$fname','$lname','$phone','$email','$password','$birth','$role','$code')";
@@ -53,7 +53,7 @@ elseif($role == "Family_Member" & $fname != "" & $lname != "" & $email != "" & $
         document.getElementById("family").style.display = "block";
 
     }
-        else if(pat.value == "Family_Member"){ 
+        else if(pat.value == "Family Member"){ 
             document.getElementById("family").style.display = "block";
             document.getElementById("patient").style.display = "none";
 
@@ -78,6 +78,8 @@ elseif($role == "Family_Member" & $fname != "" & $lname != "" & $email != "" & $
 </head>
 <body>
 <link href="style.css" rel="stylesheet" type="text/css">
+<link rel="icon" href="https://goingconcern-fe8.kxcdn.com/wp-content/uploads/2019/05/Hide-Your-Pain-Harold-1024x576.jpg">
+
     <h1>Welcome to Old Farts and Darts</h1>
 
     <h2>Register</h2>

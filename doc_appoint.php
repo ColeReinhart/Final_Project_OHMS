@@ -53,6 +53,7 @@ elseif( $Date != "" & $Pat_ID != "" & $Doc_ID != ""){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="style.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="https://goingconcern-fe8.kxcdn.com/wp-content/uploads/2019/05/Hide-Your-Pain-Harold-1024x576.jpg">
 
     <title>Doctors Appointment</title>
 </head>

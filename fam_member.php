@@ -3,7 +3,7 @@ include_once 'db.php';
 
 session_start();
 
-if(($_SESSION['loggedIn'] = true) && ($_SESSION['role'] == "Family_Mem")|| $_SESSION['role'] == "Admin") {
+if(($_SESSION['loggedIn'] = true) && ($_SESSION['role'] == "Family Mem")|| $_SESSION['role'] == "Admin") {
 
 } else {
     header("location: index.php");
@@ -22,6 +22,10 @@ if(isset($_GET['Date'])) {
 
 $fam_search = "SELECT FAMILY_MEMBER.Family_Code, Patient.Family_Code, Patient.Pat_ID, Patient.Group FROM FAMILY_MEMBER JOIN Patient ON FAMILY_MEMBER.Family_Code = Patient.Family_Code WHERE FAMILY_MEMBER.FAM_ID = {$_SESSION['famID']}";
 $result = mysqli_query($conn, $fam_search);
+if(mysqli_num_rows($result) == "int(0)"){
+    session_destroy();
+    header("location: index.php");
+}
   while($row = mysqli_fetch_row($result)) {
       $fam_code = $row[1];
       $pat_id = $row[2];
@@ -52,10 +56,8 @@ $result = mysqli_query($conn, $fam_search);
         <br>
 
         <label>Date:</label>
-        <?php echo 'Date Goes Here'?>
-        <br>
 
-        <input type="submit" name="submit" value="OKAY">
+
 
         <table>
             <tr>
@@ -180,8 +182,6 @@ $result = mysqli_query($conn, $fam_search);
                 }
 ?>
 </table>
-        <input type="submit" name="submit" value="OKAY">
-        <input type="submit" name="submit" value="CANCEL">
 
 
 

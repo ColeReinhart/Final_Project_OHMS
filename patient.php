@@ -33,6 +33,7 @@ $result = mysqli_query($conn, $fam_search);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="style.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="https://goingconcern-fe8.kxcdn.com/wp-content/uploads/2019/05/Hide-Your-Pain-Harold-1024x576.jpg">
 
     <title>Family Members Home</title>
 </head>
@@ -173,8 +174,7 @@ $result = mysqli_query($conn, $fam_search);
                 }
 ?>
 </table>
-        <input type="submit" name="submit" value="OKAY">
-        <input type="submit" name="submit" value="CANCEL">
+
 
 
 
