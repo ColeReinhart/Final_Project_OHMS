@@ -43,12 +43,9 @@ $result = mysqli_query($conn, $fam_search);
         </form>
         <h1>Patient Home</h1>
 
-        <label>Family Code:</label>
-        <?php echo $fam_code?>
-        <br>
+        <h3 class = 'h3thing'>Family Code: <?php echo $fam_code?></h3>
 
-        <label>Patient ID:</label>
-        <?php echo $pat_id?>
+        <h3 class = 'h3thing'>Patient ID: <?php echo $pat_id?></h3> 
         <br>
 
         <table>

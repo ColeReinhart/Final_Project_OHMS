@@ -87,7 +87,7 @@ if(isset($_GET['logout'])) {
             <th>Emergency Contact</th>
             <th>Admission Date</th>
         </tr>";
-        $sql = "SELECT Pat_ID, Fname, Lname, DoB, Emergency_Contact, Admission_Date FROM Patient";
+        $sql = "SELECT Pat_ID, Fname, Lname, DoB, Emergency_Contact, Admission_Date FROM Patient WHERE Patient.Approved = 1";
             $result = mysqli_query($conn, $sql);
             if($result) {
                 while($row = mysqli_fetch_row($result)) {

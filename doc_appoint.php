@@ -88,7 +88,7 @@ elseif( $Date != "" & $Pat_ID != "" & $Doc_ID != ""){
         <small> NOTE: Appointments can only be made on a day a roster exists </small>
         <form action="doc_appoint.php">
         <label>Patient ID</label>
-        <input name="pat"type="number" value="<?php if(isset($pat)){echo $pat; } ?>">
+        <input name="pat"type="number" value="<?php if(isset($pat)){echo $pat; } ?>" min = 0>
         <br>
         <label>Date</label>
         <input name="Date" type="date" value="<?php if(isset($_GET['Date'])){echo($_GET['Date']); } ?>">

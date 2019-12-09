@@ -70,7 +70,7 @@ if(isset($_GET['emp_id'])){
                 <th>Salary</th>
             </tr>
             <?php
-            $sql = "SELECT Emp_ID, Fname, Lname, Salary FROM Employee";
+            $sql = "SELECT Emp_ID, Fname, Lname, Salary FROM Employee WHERE Employee.Approved = 1";
             $result = mysqli_query($conn, $sql);
             if($result) {
                 while($row = mysqli_fetch_row($result)) {
