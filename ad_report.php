@@ -13,6 +13,12 @@ if(isset($_GET['logout'])) {
     session_destroy();
     header("location: index.php");
 }
+$time = date("Y-m-d",time());
+$time_sess = $time;
+if(isset($_GET['Date'])) {
+    $_SESSION['date'] = $_GET["Date"];
+    $time_sess = $_SESSION['date'];
+}
 
 ?>
 <html>
@@ -44,18 +50,12 @@ if(isset($_GET['logout'])) {
             <li><a href='new_roster.php'>New Roster</a></li>
         </ul>
 
-        <label>Date</label>
-        <input type="date">
-        <br>
-
-        <label>Missed Patient Activity</label>
-
         <table>
             <tr>
-                <th>Patient's Name</th>
-                <th>Doctor's Name</th>
-                <th>Doctor's Appointment</th>
-                <th>Caregiver's Name</th>
+                <th>Name</th>
+                <th>Doctors' Name</th>
+                <th>Doctors' Appointment</th>
+                <th>Caregivers' Name</th>
                 <th>Morning Medicine</th>
                 <th>Afternoon Medicine</th>
                 <th>Night Medicine</th>
@@ -64,18 +64,116 @@ if(isset($_GET['logout'])) {
                 <th>Dinner</th>
             </tr>
             <tr>
-                <td></td>
-                <td></td>
-                <td><input type="checkbox"></td>
-                <td></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-            </tr>
-        </table>
+      <form>
+<?php
+            
+            echo"<label>Date</label>";
+        echo"<input name='Date' type='date' value='$time_sess' >";
+        ?>
+        <input name="sub_date" type="submit">
+</form>
+        <br>
+        <?php
+        $Date = $_GET['Date'] ?? $time;
+        $sql1 = "SELECT  Fname, Lname,Morning_Med,Afternoon_Med, Night_Med, Breakfast, Lunch, Dinner, Patient.Pat_ID, `Group` FROM Caregiver JOIN  Patient ON Patient.Pat_ID = Caregiver.Pat_ID WHERE `Date` = '$Date' AND  (Morning_Med = 0 OR Afternoon_Med = 0 OR Night_Med = 0 OR Breakfast = 0 OR Lunch = 0 OR Dinner = 0)";
+                $res_1 = mysqli_query($conn, $sql1);
+                if($res_1) {
+                    while($row1 = mysqli_fetch_row($res_1)) {
+                        if($row1[2] == 1){
+                            $r1 = "✔";
+                        }
+                        else{
+                            $r1 = "✘";
+                        }
+                        if($row1[3] == 1){
+                            $r2 = "✔";
+                        }
+                        else{
+                            $r2 = "✘";
+                        }
+                        if($row1[4] == 1){
+                            $r3 = "✔";
+                        }
+                        else{
+                            $r3 = "✘";
+                        }
+                        if($row1[5] == 1){
+                            $r4 = "✔";
+                        }
+                        else{
+                            $r4 = "✘";
+                        }
+                        if($row1[6] == 1){
+                            $r5 = "✔";
+                        }
+                        else{
+                            $r5 = "✘";
+                        }
+                        if($row1[7] == 1){
+                            $r6 = "✔";
+                        }
+                        else{
+                            $r6 = "✘";
+                        }
+
+                        $name_search = "SELECT Roster.Schedule_Date, Doctor.Fname, Doctor.Lname, Group1.Fname, Group1.Lname, Group2.Fname, Group2.Lname, Group3.Fname, Group3.Lname, Group4.Fname, Group4.Lname FROM Roster JOIN Employee as Doctor ON Roster.Doctor_id = Doctor.Emp_ID JOIN Employee as Group1 ON Roster.Group1_id = Group1.Emp_ID 
+                        JOIN Employee as Group2 ON Roster.Group2_id = Group2.Emp_ID 
+                        JOIN Employee as Group3 ON Roster.Group3_id = Group3.Emp_ID 
+                        JOIN Employee as Group4 ON Roster.Group4_id = Group4.Emp_ID WHERE Roster.Schedule_Date = '$Date'";
+
+                  $result_1 = mysqli_query($conn, $name_search);
+                  if($row2 = mysqli_fetch_row($result_1)) {
+                        
+                  
+                        echo"<td>$row1[0] $row1[1]</td>";
+
+                        
+
+                        $appt = "SELECT * FROM `Appointments` WHERE Date = '$Date' AND `Pat_ID` = $row1[8]";
+                        $result_3 = mysqli_query($conn, $appt);
+                        if(mysqli_num_rows($result_3) == "int(0)"){
+                            echo "<td> None </td>";
+                            echo "<td>No Appointment</td>";
+                        }
+
+                        elseif($row3 = mysqli_fetch_row($result_3)) {
+                            if($row3[8] == 1){
+                            echo "<td> $row2[1] $row2[2]</td>";
+                            echo "<td> Completed </td>";
+                        
+                    }
+                    
+                        if($row3[8] == 0){
+                        echo "<td> $row2[1] $row2[2]</td>";
+                        echo "<td> Not Completed </td>";
+                    
+                }
+            }
+
+
+                        if($row1[9] == 'A'){
+                        echo "<td>$row2[3] $row2[4]</td>";
+                  }elseif($row1[9] == 'B'){
+                    echo "<td>$row2[5] $row2[6]</td>";
+                  }elseif($row1[9] == 'C'){
+                    echo "<td>$row2[7] $row2[8]</td>";
+                  }elseif($row1[9] == 'D'){
+                    echo "<td>$row2[9] $row2[10]</td>";
+                  }
+                        echo"<td>$r1</td>
+                        <td>$r2</td>
+                        <td>$r3</td>
+                        <td>$r4</td>
+                        <td>$r5</td>
+                        <td>$r6</td>
+                        </tr>
+                        ";
+                  }
+                    }
+                }
+?>
+</table>
+
 
         <footer>
             <ul>
