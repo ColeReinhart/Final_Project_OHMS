@@ -26,6 +26,10 @@ h3 {
     color:  #9fa0a0;
 }
 
+.h3thing {
+    text-align: left;
+}
+
 input {
     margin-top: 10px;
 }

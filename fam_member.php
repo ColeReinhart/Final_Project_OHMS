@@ -3,7 +3,7 @@ include_once 'db.php';
 
 session_start();
 
-if(($_SESSION['loggedIn'] = true) && ($_SESSION['role'] == "Family Mem")|| $_SESSION['role'] == "Admin") {
+if(($_SESSION['loggedIn'] = true) && ($_SESSION['role'] == "Family Member")|| $_SESSION['role'] == "Admin") {
 
 } else {
     header("location: index.php");
@@ -47,12 +47,9 @@ if(mysqli_num_rows($result) == "int(0)"){
         </form>
         <h1>Family Member Home</h1>
 
-        <label>Family Code (For Patient Family Member):</label>
-        <?php echo $fam_code?>
-        <br>
+        <h3 class = 'h3thing'>Family Code: <?php echo $fam_code?></h3>
 
-        <label>Patient ID (For Patient Family Member):</label>
-        <?php echo $pat_id?>
+        <h3 class = 'h3thing'>Patient ID: <?php echo $pat_id?></h3> 
         <br>
 
         <label>Date:</label>
